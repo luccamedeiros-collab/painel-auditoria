@@ -307,7 +307,16 @@
                     <label>Cliente · Cargas</label>
                     <select id="wiz-map-carga-cliente"></select>
                 </div>
+                <div class="field-row">
+                    <label>Código Cliente · Ocorrências <span class="opt">(opcional, mais confiável que o nome)</span></label>
+                    <select id="wiz-map-ocor-codigo"></select>
+                </div>
+                <div class="field-row">
+                    <label>Código Cliente · Cargas <span class="opt">(opcional, mais confiável que o nome)</span></label>
+                    <select id="wiz-map-carga-codigo"></select>
+                </div>
             </div>
+            <p class="sub" style="margin-top:6px;">Se o código do cliente for informado nas duas planilhas, ele é usado como prioridade no cruzamento (mais confiável que o nome). Sem código, o cruzamento usa o nome normalizado.</p>
             <label class="opt-row">
                 <input type="checkbox" id="wiz-opt-clean-codes" checked style="width:auto;">
                 Ignorar códigos/CNPJ no início do nome do cliente (ex: "069356 - 62.854.004 NOME" → "NOME")
@@ -374,6 +383,10 @@
                 <div class="field-row">
                     <label>Horário previsto de carregamento <span class="opt">(opcional)</span></label>
                     <select id="wiz-map-dia-horario"></select>
+                </div>
+                <div class="field-row">
+                    <label>Código Cliente <span class="opt">(opcional, mais confiável que o nome)</span></label>
+                    <select id="wiz-map-dia-codigo"></select>
                 </div>
             </div>
 
@@ -814,6 +827,16 @@
                 return String(v == null ? '' : v).trim().toUpperCase().replace(/\s+/g, ' ');
             }
 
+            // Monta a chave de cruzamento: usa o código do cliente quando disponível
+            // (muito mais confiável), caindo pro nome normalizado quando não há código.
+            function wizChaveCliente(nome, codigo) {
+                const codigoLimpo = codigo == null ? '' : String(codigo).trim();
+                if (codigoLimpo) {
+                    return 'COD::' + codigoLimpo.toUpperCase();
+                }
+                return 'NOME::' + wizNormKey(nome);
+            }
+
             function wizLevenshtein(a, b) {
                 if (a === b) return 0;
                 const al = a.length, bl = b.length;
@@ -833,15 +856,20 @@
                 return prev[bl];
             }
 
-            // Busca o cliente exato; se não encontrar, procura o nome mais parecido dentro de um
-            // limite de diferença (correspondência aproximada, para pequenos erros de digitação).
+            // Busca o cliente exato (por código ou por nome); se não encontrar E a chave for
+            // baseada em nome, procura o nome mais parecido dentro de um limite de diferença
+            // (correspondência aproximada, só faz sentido comparando nome com nome).
             function wizFindClientStat(key) {
                 if (wizState.clientStats[key]) {
                     return { stat: wizState.clientStats[key], aproximado: false };
                 }
+                if (key.indexOf('NOME::') !== 0) {
+                    return { stat: null, aproximado: false };
+                }
                 let melhor = null, menorDist = Infinity;
                 const limite = Math.max(2, Math.round(key.length * 0.15)); // até ~15% de diferença
                 Object.keys(wizState.clientStats).forEach(k => {
+                    if (k.indexOf('NOME::') !== 0) return; // só compara nome com nome
                     if (Math.abs(k.length - key.length) > limite) return;
                     const dist = wizLevenshtein(key, k);
                     if (dist < menorDist) { menorDist = dist; melhor = k; }
@@ -917,10 +945,13 @@
                         selecoes: {
                             colOcor: document.getElementById('wiz-map-ocor-cliente') ? document.getElementById('wiz-map-ocor-cliente').value : '',
                             colCarga: document.getElementById('wiz-map-carga-cliente') ? document.getElementById('wiz-map-carga-cliente').value : '',
+                            colOcorCodigo: document.getElementById('wiz-map-ocor-codigo') ? document.getElementById('wiz-map-ocor-codigo').value : '',
+                            colCargaCodigo: document.getElementById('wiz-map-carga-codigo') ? document.getElementById('wiz-map-carga-codigo').value : '',
                             colDiaCliente: document.getElementById('wiz-map-dia-cliente') ? document.getElementById('wiz-map-dia-cliente').value : '',
                             colDiaNumero: document.getElementById('wiz-map-dia-numero') ? document.getElementById('wiz-map-dia-numero').value : '',
                             colDiaValor: document.getElementById('wiz-map-dia-valor') ? document.getElementById('wiz-map-dia-valor').value : '',
-                            colDiaHorario: document.getElementById('wiz-map-dia-horario') ? document.getElementById('wiz-map-dia-horario').value : ''
+                            colDiaHorario: document.getElementById('wiz-map-dia-horario') ? document.getElementById('wiz-map-dia-horario').value : '',
+                            colDiaCodigo: document.getElementById('wiz-map-dia-codigo') ? document.getElementById('wiz-map-dia-codigo').value : ''
                         },
                         flagged: window._wizFlaggedAtual || null,
                         salvoEm: new Date().toISOString()
@@ -969,10 +1000,14 @@
                 if (wizState.ocorrencias.headers.length) {
                     wizFillSelect(document.getElementById('wiz-map-ocor-cliente'), wizState.ocorrencias.headers);
                     document.getElementById('wiz-map-ocor-cliente').value = snap.selecoes.colOcor;
+                    wizFillSelect(document.getElementById('wiz-map-ocor-codigo'), wizState.ocorrencias.headers, 'Nenhum (usar nome)');
+                    document.getElementById('wiz-map-ocor-codigo').value = snap.selecoes.colOcorCodigo || '';
                 }
                 if (wizState.cargas.headers.length) {
                     wizFillSelect(document.getElementById('wiz-map-carga-cliente'), wizState.cargas.headers);
                     document.getElementById('wiz-map-carga-cliente').value = snap.selecoes.colCarga;
+                    wizFillSelect(document.getElementById('wiz-map-carga-codigo'), wizState.cargas.headers, 'Nenhum (usar nome)');
+                    document.getElementById('wiz-map-carga-codigo').value = snap.selecoes.colCargaCodigo || '';
                 }
                 if (Object.keys(wizState.clientStats).length) {
                     wizRenderClientTable();
@@ -985,10 +1020,12 @@
                     wizFillSelect(document.getElementById('wiz-map-dia-numero'), wizState.diaria.headers);
                     wizFillSelect(document.getElementById('wiz-map-dia-valor'), wizState.diaria.headers);
                     wizFillSelect(document.getElementById('wiz-map-dia-horario'), wizState.diaria.headers, 'Nenhum (não informar)');
+                    wizFillSelect(document.getElementById('wiz-map-dia-codigo'), wizState.diaria.headers, 'Nenhum (usar nome)');
                     document.getElementById('wiz-map-dia-cliente').value = snap.selecoes.colDiaCliente;
                     document.getElementById('wiz-map-dia-numero').value = snap.selecoes.colDiaNumero;
                     document.getElementById('wiz-map-dia-valor').value = snap.selecoes.colDiaValor;
                     document.getElementById('wiz-map-dia-horario').value = snap.selecoes.colDiaHorario;
+                    document.getElementById('wiz-map-dia-codigo').value = snap.selecoes.colDiaCodigo || '';
                     document.getElementById('wiz-btn-to-5').disabled = false;
                 }
 
@@ -1119,6 +1156,11 @@
                 document.getElementById('wiz-map-ocor-cliente').value = wizGuessColumn(wizState.ocorrencias.headers, ['cliente', 'razao', 'nome fantasia', 'nome']);
                 document.getElementById('wiz-map-carga-cliente').value = wizGuessColumn(wizState.cargas.headers, ['cliente', 'razao', 'nome fantasia', 'nome']);
 
+                wizFillSelect(document.getElementById('wiz-map-ocor-codigo'), wizState.ocorrencias.headers, 'Nenhum (usar nome)');
+                wizFillSelect(document.getElementById('wiz-map-carga-codigo'), wizState.cargas.headers, 'Nenhum (usar nome)');
+                document.getElementById('wiz-map-ocor-codigo').value = wizGuessColumn(wizState.ocorrencias.headers, ['codigo cliente', 'cod cliente', 'cód. cliente', 'código', 'codigo', 'cnpj']);
+                document.getElementById('wiz-map-carga-codigo').value = wizGuessColumn(wizState.cargas.headers, ['codigo cliente', 'cod cliente', 'cód. cliente', 'código', 'codigo', 'cnpj']);
+
                 wizShowStep(2);
             });
 
@@ -1131,6 +1173,8 @@
                 const errEl = document.getElementById('wiz-err-2');
                 const colOcor = document.getElementById('wiz-map-ocor-cliente').value;
                 const colCarga = document.getElementById('wiz-map-carga-cliente').value;
+                const colOcorCodigo = document.getElementById('wiz-map-ocor-codigo').value;
+                const colCargaCodigo = document.getElementById('wiz-map-carga-codigo').value;
                 if (!colOcor || !colCarga) {
                     errEl.textContent = 'Selecione a coluna de cliente nas duas planilhas.';
                     errEl.classList.add('visible');
@@ -1138,12 +1182,18 @@
                 }
                 errEl.classList.remove('visible');
                 wizState.cleanCodes = document.getElementById('wiz-opt-clean-codes').checked;
-                wizComputeClientStats(colOcor, colCarga);
+                wizComputeClientStats(colOcor, colCarga, colOcorCodigo, colCargaCodigo);
                 wizRenderClientTable();
                 wizShowStep(3);
             });
 
-            function wizComputeClientStats(colOcor, colCarga) {
+            function wizChaveCliente(nome, codigo) {
+                const codigoLimpo = codigo ? String(codigo).trim() : '';
+                if (codigoLimpo) return 'COD::' + codigoLimpo.toUpperCase();
+                return 'NOME::' + wizNormKey(nome);
+            }
+
+            function wizComputeClientStats(colOcor, colCarga, colOcorCodigo, colCargaCodigo) {
                 const ocorCount = {};
                 const cargaCount = {};
                 const display = {};
@@ -1151,7 +1201,8 @@
                 wizState.ocorrencias.rows.forEach(row => {
                     const nome = wizCleanClientName(row[colOcor]);
                     if (!nome) return;
-                    const key = wizNormKey(nome);
+                    const codigo = colOcorCodigo ? row[colOcorCodigo] : '';
+                    const key = wizChaveCliente(nome, codigo);
                     ocorCount[key] = (ocorCount[key] || 0) + 1;
                     if (!display[key]) display[key] = nome;
                 });
@@ -1159,7 +1210,8 @@
                 wizState.cargas.rows.forEach(row => {
                     const nome = wizCleanClientName(row[colCarga]);
                     if (!nome) return;
-                    const key = wizNormKey(nome);
+                    const codigo = colCargaCodigo ? row[colCargaCodigo] : '';
+                    const key = wizChaveCliente(nome, codigo);
                     cargaCount[key] = (cargaCount[key] || 0) + 1;
                     if (!display[key]) display[key] = nome;
                 });
@@ -1169,7 +1221,7 @@
                     const ocor = ocorCount[key] || 0;
                     const cargas = cargaCount[key] || 0;
                     // pct fica null (não "100%") quando não há carga correspondente no histórico —
-                    // isso normalmente indica que os nomes não bateram entre as planilhas, não que
+                    // isso normalmente indica que os nomes/códigos não bateram entre as planilhas, não que
                     // o cliente seja 100% de risco.
                     const pct = cargas > 0 ? (ocor / cargas * 100) : null;
                     stats[key] = { display: display[key], ocorrencias: ocor, cargas: cargas, pct: pct };
@@ -1216,10 +1268,12 @@
                 wizFillSelect(document.getElementById('wiz-map-dia-numero'), headers);
                 wizFillSelect(document.getElementById('wiz-map-dia-valor'), headers);
                 wizFillSelect(document.getElementById('wiz-map-dia-horario'), headers, 'Nenhum (não informar)');
+                wizFillSelect(document.getElementById('wiz-map-dia-codigo'), headers, 'Nenhum (usar nome)');
                 document.getElementById('wiz-map-dia-cliente').value = wizGuessColumn(headers, ['cliente', 'razao', 'nome fantasia', 'nome']);
                 document.getElementById('wiz-map-dia-numero').value = wizGuessColumn(headers, ['carga', 'pedido', 'numero', 'nº', 'n°']);
                 document.getElementById('wiz-map-dia-valor').value = wizGuessColumn(headers, ['valor', 'total', 'preco', 'preço']);
                 document.getElementById('wiz-map-dia-horario').value = wizGuessColumn(headers, ['horario', 'horário', 'hora prevista', 'previsto', 'carregamento']);
+                document.getElementById('wiz-map-dia-codigo').value = wizGuessColumn(headers, ['codigo cliente', 'cod cliente', 'cód. cliente', 'código', 'codigo', 'cnpj']);
                 document.getElementById('wiz-btn-to-5').disabled = false;
                 wizSalvarProgresso();
             }
@@ -1247,12 +1301,14 @@
                 const colNumero = document.getElementById('wiz-map-dia-numero').value;
                 const colValor = document.getElementById('wiz-map-dia-valor').value;
                 const colHorario = document.getElementById('wiz-map-dia-horario').value;
+                const colCodigo = document.getElementById('wiz-map-dia-codigo').value;
 
                 const flagged = [];
                 wizState.diaria.rows.forEach(row => {
                     const nomeOriginal = row[colCliente];
                     const nome = wizCleanClientName(nomeOriginal);
-                    const key = wizNormKey(nome);
+                    const codigo = colCodigo ? row[colCodigo] : '';
+                    const key = wizChaveCliente(nome, codigo);
                     const busca = wizFindClientStat(key);
                     const stat = busca.stat;
                     const valor = colValor ? wizParseNumber(row[colValor]) : 0;
