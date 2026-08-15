@@ -26,28 +26,16 @@
     .card.warn .value { color: var(--warn); }
     .card.bad .value { color: var(--bad); }
 
-    .filters { background: #fff; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 10px; align-items: end; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-    .filters .field { display: flex; flex-direction: column; font-size: 11px; }
-    .filters .field label { font-weight: 600; margin-bottom: 3px; color: var(--gray); }
-    .filters select, .filters input { padding: 6px 8px; border: 1px solid #cbd5e1; border-radius: 5px; font-size: 12px; min-width: 130px; }
-    .filters button { padding: 7px 14px; border: none; border-radius: 5px; background: var(--krona-blue-light); color: #fff; font-size: 12px; cursor: pointer; height: fit-content; }
-    .filters button:hover { background: var(--krona-blue); }
-
     table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-    thead th { background: var(--krona-blue-light); color: #fff; text-align: left; padding: 9px 10px; font-size: 11px; position: sticky; top: 0; cursor: pointer; user-select: none; }
-    thead th:hover { background: var(--krona-blue); }
+    thead th { background: var(--krona-blue-light); color: #fff; text-align: left; padding: 9px 10px; font-size: 11px; position: sticky; top: 0; }
     tbody td { padding: 8px 10px; font-size: 11.5px; border-bottom: 1px solid #e2e8f0; }
     tbody tr:hover { background: #f8fafc; }
+    td.num, th.num { text-align: right; }
     .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10.5px; font-weight: 600; }
     .badge.ok { background: #dcfce7; color: var(--ok); }
     .badge.warn { background: #fef3c7; color: var(--warn); }
     .badge.bad { background: #fee2e2; color: var(--bad); }
     .badge.gray { background: #e2e8f0; color: var(--gray); }
-    a.link-btn { color: var(--krona-blue-light); text-decoration: none; font-size: 11px; font-weight: 600; }
-    a.link-btn:hover { text-decoration: underline; }
-
-    #loadingMsg, #emptyMsg { text-align: center; padding: 30px; color: var(--gray); font-size: 13px; }
-    #errorMsg { text-align: center; padding: 16px; color: var(--bad); font-size: 12px; background: #fee2e2; border-radius: 8px; margin-bottom: 16px; display: none; }
 
     /* --- Abas --- */
     .tabs { display: flex; gap: 6px; margin-bottom: 16px; }
@@ -78,8 +66,11 @@
     .sheet-picker { margin-top: 8px; font-size: 11px; color: var(--gray); }
     .sheet-picker select { margin-left: 6px; padding: 4px 6px; border-radius: 4px; border: 1px solid #cbd5e1; }
 
+    .section-label { font-size: 11px; font-weight: 700; color: var(--krona-blue); text-transform: uppercase; margin: 18px 0 8px 0; }
+    .section-label:first-child { margin-top: 0; }
     .field-map { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .field-row label { display: block; font-size: 11px; font-weight: 600; color: var(--gray); margin-bottom: 3px; }
+    .field-row label .opt { font-weight: 400; text-transform: none; }
     .field-row select { width: 100%; padding: 6px 8px; border: 1px solid #cbd5e1; border-radius: 5px; font-size: 12px; }
     .opt-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--gray); margin-top: 14px; }
 
@@ -101,11 +92,9 @@
 
     .table-scroll { max-height: 420px; overflow-y: auto; border: 1px solid #e2e8f0; border-radius: 8px; }
     .table-scroll table { box-shadow: none; border-radius: 0; }
-    .bar-cell { width: 120px; }
-    .bar-track { background: #e2e8f0; border-radius: 4px; height: 8px; width: 100px; overflow: hidden; }
-    .bar-fill { height: 100%; border-radius: 4px; }
     tr.row-flag { background: #fff7ed; }
     tr.row-flag td { font-weight: 600; }
+    .empty { text-align: center; padding: 20px; color: var(--gray); }
 
     .summary-strip { display: flex; gap: 0; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; margin-bottom: 14px; }
     .summary-cell { flex: 1; padding: 12px 14px; border-right: 1px solid #e2e8f0; text-align: center; }
@@ -114,14 +103,15 @@
     .summary-cell.hot .n { color: var(--bad); }
     .summary-cell .l { font-size: 10.5px; color: var(--gray); margin-top: 2px; }
 
-    /* --- Relatório Semanal --- */
-    .report-controls { background: #fff; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: end; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-    .report-controls .field { display: flex; flex-direction: column; font-size: 11px; }
-    .report-controls .field label { font-weight: 600; margin-bottom: 3px; color: var(--gray); }
-    .report-controls input, .report-controls select { padding: 6px 8px; border: 1px solid #cbd5e1; border-radius: 5px; font-size: 12px; }
+    /* --- Relatório --- */
+    .report-controls { background: #fff; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
     .report-controls button { padding: 8px 16px; border: none; border-radius: 6px; background: var(--krona-blue-light); color: #fff; font-size: 12.5px; font-weight: 600; cursor: pointer; }
     .report-controls button:hover { background: var(--krona-blue); }
     .report-controls button.secondary { background: #64748b; }
+    #rel-file-list { font-size: 11.5px; }
+    #rel-file-list .ok-item { color: var(--ok); }
+    #rel-file-list .err-item { color: var(--bad); }
+    #rel-file-list .summary-line { color: var(--gray); margin-top: 6px; }
 
     #reportOutput { display: none; }
     .report-sheet { background: #fff; border-radius: 8px; padding: 28px 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
@@ -145,7 +135,7 @@
 
     @media print {
         body { background: #fff; padding: 0; }
-        .header, .tabs, .report-controls, #painelHistorico, #painelSelecao { display: none !important; }
+        .header, .tabs, .report-controls, #painelSelecao { display: none !important; }
         #reportOutput { display: block !important; }
         .report-sheet { box-shadow: none; padding: 0; }
         .chart-row { break-inside: avoid; }
@@ -157,88 +147,15 @@
 
     <div class="header">
         <h1>Painel de Auditorias — Grupo Krona</h1>
-        <p>Análise geral do histórico e seleção de cargas para auditoria</p>
+        <p>Seleção de cargas para auditoria e relatório consolidado</p>
     </div>
 
     <div class="tabs">
-        <button type="button" class="tab-btn active" id="tabBtnHistorico" onclick="mostrarAba('historico')">📋 Histórico de Auditorias</button>
-        <button type="button" class="tab-btn" id="tabBtnSelecao" onclick="mostrarAba('selecao')">🎯 Seleção de Cargas</button>
-        <button type="button" class="tab-btn" id="tabBtnRelatorio" onclick="mostrarAba('relatorio')">📄 Relatório Semanal</button>
+        <button type="button" class="tab-btn active" id="tabBtnSelecao" onclick="mostrarAba('selecao')">🎯 Seleção de Cargas</button>
+        <button type="button" class="tab-btn" id="tabBtnRelatorio" onclick="mostrarAba('relatorio')">📄 Relatório de Auditorias</button>
     </div>
 
-    <div id="painelHistorico" class="tab-panel active">
-
-    <div id="errorMsg"></div>
-    <div id="periodoAvisoMsg" style="font-size: 11px; color: var(--gray); margin-bottom: 10px;"></div>
-
-    <div class="cards" id="summaryCards">
-        <div class="card"><div class="label">Total de Auditorias</div><div class="value" id="cardTotal">-</div></div>
-        <div class="card"><div class="label">Score Médio</div><div class="value" id="cardScoreMedio">-</div></div>
-        <div class="card warn"><div class="label">Com Divergência</div><div class="value" id="cardDivergencia">-</div></div>
-        <div class="card bad"><div class="label">Pendente de Tratativa</div><div class="value" id="cardPendente">-</div></div>
-    </div>
-
-    <div class="filters">
-        <div class="field">
-            <label>Unidade</label>
-            <select id="filtroUnidade"><option value="">Todas</option></select>
-        </div>
-        <div class="field">
-            <label>Transportadora</label>
-            <select id="filtroTransportadora"><option value="">Todas</option></select>
-        </div>
-        <div class="field">
-            <label>Auditor</label>
-            <select id="filtroAuditor"><option value="">Todos</option></select>
-        </div>
-        <div class="field">
-            <label>Divergência</label>
-            <select id="filtroDivergencia">
-                <option value="">Todas</option>
-                <option value="Sim">Só com divergência</option>
-                <option value="Não">Só sem divergência</option>
-                <option value="pendente">Pendente de tratativa</option>
-            </select>
-        </div>
-        <div class="field">
-            <label>Buscar (ID, pedido, cliente...)</label>
-            <input type="text" id="filtroBusca" placeholder="Digite para buscar...">
-        </div>
-        <button onclick="aplicarFiltros()">Filtrar</button>
-        <button onclick="limparFiltros()" style="background: var(--gray);">Limpar</button>
-        <button onclick="exportarHistoricoExcel()" style="background: #16a34a;">📊 Exportar Excel</button>
-    </div>
-
-    <div id="loadingMsg">Carregando auditorias...</div>
-    <div id="emptyMsg" style="display:none;">Nenhuma auditoria encontrada com esses filtros.</div>
-
-    <div class="chart-box" id="historicoChartBox" style="display:none; margin-bottom:16px;">
-        <h3>Tendência de Score no Período Filtrado</h3>
-        <canvas id="chartHistoricoScore" style="max-height:220px;"></canvas>
-    </div>
-
-    <div style="overflow-x:auto;">
-        <table id="auditTable" style="display:none;">
-            <thead>
-                <tr>
-                    <th onclick="ordenarPor('timestamp')">Data/Hora</th>
-                    <th onclick="ordenarPor('auditId')">ID</th>
-                    <th onclick="ordenarPor('unidade')">Unidade</th>
-                    <th onclick="ordenarPor('transportadora')">Transportadora</th>
-                    <th onclick="ordenarPor('auditorResponsavel')">Auditor</th>
-                    <th onclick="ordenarPor('scoreComportamentalPct')">Score</th>
-                    <th onclick="ordenarPor('divergencia')">Divergência</th>
-                    <th>Status</th>
-                    <th>Arquivos</th>
-                </tr>
-            </thead>
-            <tbody id="auditTableBody"></tbody>
-        </table>
-    </div>
-
-    </div><!-- fim #painelHistorico -->
-
-    <div id="painelSelecao" class="tab-panel">
+    <div id="painelSelecao" class="tab-panel active">
 
         <div id="wiz-restore-banner" style="display:none; background:#fff7ed; border:1px solid #fdba74; border-radius:8px; padding:10px 14px; margin-bottom:14px; font-size:12px; display:flex; justify-content:space-between; align-items:center; gap:10px;">
             <span id="wiz-restore-text">Você tem um progresso salvo nesta sessão.</span>
@@ -248,42 +165,39 @@
             </span>
         </div>
 
-
         <div class="stepper">
-            <div class="step-tab active" data-step="1"><span class="num">01</span> Histórico</div>
+            <div class="step-tab active" data-step="1"><span class="num">01</span> Upload</div>
             <div class="step-tab" data-step="2"><span class="num">02</span> Mapeamento</div>
-            <div class="step-tab" data-step="3"><span class="num">03</span> Ranking por cliente</div>
-            <div class="step-tab" data-step="4"><span class="num">04</span> Carga do dia</div>
-            <div class="step-tab" data-step="5"><span class="num">05</span> Critérios e resultado</div>
+            <div class="step-tab" data-step="3"><span class="num">03</span> Critérios e Resultado</div>
         </div>
 
-        <!-- STEP 1: UPLOAD HISTÓRICO -->
+        <!-- STEP 1: UPLOAD -->
         <div class="wiz-card visible" id="wiz-card-1">
-            <h2>1. Envie as planilhas de histórico</h2>
-            <p class="sub">Uma linha em cada planilha equivale a uma ocorrência ou a uma carga. O sistema conta as linhas por cliente para calcular o percentual.</p>
+            <h2>1. Envie as duas planilhas</h2>
+            <p class="sub">O Ranking de Qualidade Logística já vem pronto do Google Planilhas (cruzamento de ocorrências × notas por cliente). A Carga do Dia é a lista de cargas de hoje que será confrontada com esse ranking.</p>
             <div class="upload-grid">
                 <div>
-                    <div class="dropzone" id="wiz-dz-ocorrencias">
-                        <input type="file" id="wiz-file-ocorrencias" accept=".xlsx,.xls,.csv">
-                        <div class="label">Planilha de Ocorrências</div>
+                    <div class="dropzone" id="wiz-dz-ranking">
+                        <input type="file" id="wiz-file-ranking" accept=".xlsx,.xls,.csv">
+                        <div class="label">Ranking de Qualidade Logística</div>
                         <div class="hint">.xlsx, .xls ou .csv</div>
-                        <div class="filename" id="wiz-fn-ocorrencias"></div>
+                        <div class="filename" id="wiz-fn-ranking"></div>
                     </div>
-                    <div class="sheet-picker" id="wiz-sheet-picker-ocorrencias" style="display:none;">
+                    <div class="sheet-picker" id="wiz-sheet-picker-ranking" style="display:none;">
                         Aba da planilha
-                        <select id="wiz-sheet-select-ocorrencias"></select>
+                        <select id="wiz-sheet-select-ranking"></select>
                     </div>
                 </div>
                 <div>
-                    <div class="dropzone" id="wiz-dz-cargas">
-                        <input type="file" id="wiz-file-cargas" accept=".xlsx,.xls,.csv">
-                        <div class="label">Planilha de Cargas (histórico)</div>
+                    <div class="dropzone" id="wiz-dz-diaria">
+                        <input type="file" id="wiz-file-diaria" accept=".xlsx,.xls,.csv">
+                        <div class="label">Cargas do Dia</div>
                         <div class="hint">.xlsx, .xls ou .csv</div>
-                        <div class="filename" id="wiz-fn-cargas"></div>
+                        <div class="filename" id="wiz-fn-diaria"></div>
                     </div>
-                    <div class="sheet-picker" id="wiz-sheet-picker-cargas" style="display:none;">
+                    <div class="sheet-picker" id="wiz-sheet-picker-diaria" style="display:none;">
                         Aba da planilha
-                        <select id="wiz-sheet-select-cargas"></select>
+                        <select id="wiz-sheet-select-diaria"></select>
                     </div>
                 </div>
             </div>
@@ -296,81 +210,42 @@
 
         <!-- STEP 2: MAPEAMENTO -->
         <div class="wiz-card" id="wiz-card-2">
-            <h2>2. Indique a coluna de cliente em cada planilha</h2>
-            <p class="sub">Selecione qual coluna identifica o cliente em cada arquivo. Maiúsculas/minúsculas e espaços são ignorados na comparação.</p>
+            <h2>2. Indique as colunas de cada planilha</h2>
+            <p class="sub">Se o código do cliente (ou CNPJ) estiver disponível nas duas planilhas, ele é usado como prioridade no cruzamento — muito mais confiável que o nome. Sem código, o cruzamento cai para o nome normalizado (com correspondência aproximada).</p>
+
+            <div class="section-label">Ranking de Qualidade Logística</div>
             <div class="field-map">
                 <div class="field-row">
-                    <label>Cliente · Ocorrências</label>
-                    <select id="wiz-map-ocor-cliente"></select>
+                    <label>Cliente (nome) <span class="opt">(opcional se houver código)</span></label>
+                    <select id="wiz-map-rank-cliente"></select>
                 </div>
                 <div class="field-row">
-                    <label>Cliente · Cargas</label>
-                    <select id="wiz-map-carga-cliente"></select>
+                    <label>Código Cliente / CNPJ <span class="opt">(recomendado)</span></label>
+                    <select id="wiz-map-rank-codigo"></select>
                 </div>
                 <div class="field-row">
-                    <label>Código Cliente · Ocorrências <span class="opt">(opcional, mais confiável que o nome)</span></label>
-                    <select id="wiz-map-ocor-codigo"></select>
+                    <label>% de Ocorrências (Índice) <span class="opt">(obrigatório)</span></label>
+                    <select id="wiz-map-rank-pct"></select>
                 </div>
                 <div class="field-row">
-                    <label>Código Cliente · Cargas <span class="opt">(opcional, mais confiável que o nome)</span></label>
-                    <select id="wiz-map-carga-codigo"></select>
+                    <label>Nº de Ocorrências <span class="opt">(opcional, só exibição)</span></label>
+                    <select id="wiz-map-rank-ocor"></select>
+                </div>
+                <div class="field-row">
+                    <label>Nº de Notas/Cargas <span class="opt">(opcional, só exibição)</span></label>
+                    <select id="wiz-map-rank-cargas"></select>
                 </div>
             </div>
-            <p class="sub" style="margin-top:6px;">Se o código do cliente for informado nas duas planilhas, ele é usado como prioridade no cruzamento (mais confiável que o nome). Sem código, o cruzamento usa o nome normalizado.</p>
-            <label class="opt-row">
-                <input type="checkbox" id="wiz-opt-clean-codes" checked style="width:auto;">
-                Ignorar códigos/CNPJ no início do nome do cliente (ex: "069356 - 62.854.004 NOME" → "NOME")
-            </label>
-            <div class="wiz-error" id="wiz-err-2"></div>
-            <div class="wiz-actions">
-                <button type="button" class="ghost" data-wiz-back="1">Voltar</button>
-                <button type="button" class="primary" id="wiz-btn-to-3">Gerar ranking por cliente</button>
-            </div>
-        </div>
 
-        <!-- STEP 3: RANKING -->
-        <div class="wiz-card" id="wiz-card-3">
-            <h2>3. Ocorrências × cargas por cliente</h2>
-            <p class="sub">Lista completa de clientes, ordenada pelo percentual de ocorrências sobre o total de cargas. Clientes sem carga correspondente no histórico aparecem com % indefinido — provável nome não encontrado na outra planilha.</p>
-            <div class="table-scroll">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Cliente</th>
-                            <th class="num">Ocorrências</th>
-                            <th class="num">Cargas</th>
-                            <th class="num">%</th>
-                            <th class="bar-cell"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="wiz-tbody-clientes"></tbody>
-                </table>
-            </div>
-            <div class="wiz-actions">
-                <button type="button" class="ghost" data-wiz-back="2">Voltar</button>
-                <button type="button" class="primary" id="wiz-btn-to-4">Continuar para carga do dia</button>
-            </div>
-        </div>
-
-        <!-- STEP 4: CARGA DO DIA -->
-        <div class="wiz-card" id="wiz-card-4">
-            <h2>4. Envie a planilha de carga do dia</h2>
-            <p class="sub">Cada linha é uma carga do dia. Na próxima etapa você define os critérios e o sistema cruza automaticamente com o ranking de clientes.</p>
-            <div class="dropzone" id="wiz-dz-diaria" style="margin-bottom:10px;">
-                <input type="file" id="wiz-file-diaria" accept=".xlsx,.xls,.csv">
-                <div class="label">Planilha de Carga do Dia</div>
-                <div class="hint">.xlsx, .xls ou .csv</div>
-                <div class="filename" id="wiz-fn-diaria"></div>
-            </div>
-            <div class="sheet-picker" id="wiz-sheet-picker-diaria" style="display:none; margin-bottom:10px;">
-                Aba da planilha
-                <select id="wiz-sheet-select-diaria"></select>
-            </div>
-
-            <div class="field-map" id="wiz-map-diaria-wrap" style="display:none;">
+            <div class="section-label">Cargas do Dia</div>
+            <div class="field-map">
                 <div class="field-row">
                     <label>Cliente</label>
                     <select id="wiz-map-dia-cliente"></select>
+                </div>
+                <div class="field-row">
+                    <label>Código Cliente / CNPJ <span class="opt">(recomendado)</span></label>
+                    <select id="wiz-map-dia-codigo"></select>
                 </div>
                 <div class="field-row">
                     <label>Nº da carga</label>
@@ -384,23 +259,23 @@
                     <label>Horário previsto de carregamento <span class="opt">(opcional)</span></label>
                     <select id="wiz-map-dia-horario"></select>
                 </div>
-                <div class="field-row">
-                    <label>Código Cliente <span class="opt">(opcional, mais confiável que o nome)</span></label>
-                    <select id="wiz-map-dia-codigo"></select>
-                </div>
             </div>
 
-            <div class="wiz-error" id="wiz-err-4"></div>
+            <label class="opt-row">
+                <input type="checkbox" id="wiz-opt-clean-codes" checked style="width:auto;">
+                Ignorar códigos/CNPJ no início do nome do cliente (ex: "069356 - 62.854.004 NOME" → "NOME")
+            </label>
+            <div class="wiz-error" id="wiz-err-2"></div>
             <div class="wiz-actions">
-                <button type="button" class="ghost" data-wiz-back="3">Voltar</button>
-                <button type="button" class="primary" id="wiz-btn-to-5" disabled>Continuar para os critérios</button>
+                <button type="button" class="ghost" data-wiz-back="1">Voltar</button>
+                <button type="button" class="primary" id="wiz-btn-to-3">Continuar para os critérios</button>
             </div>
         </div>
 
-        <!-- STEP 5: CRITÉRIOS E RESULTADO -->
-        <div class="wiz-card" id="wiz-card-5">
-            <h2>5. Critérios de auditoria</h2>
-            <p class="sub">Uma carga do dia é selecionada para auditoria se o cliente atingir o percentual mínimo de ocorrências, se o valor da carga atingir o mínimo definido, ou ambos.</p>
+        <!-- STEP 3: CRITÉRIOS E RESULTADO -->
+        <div class="wiz-card" id="wiz-card-3">
+            <h2>3. Critérios de auditoria</h2>
+            <p class="sub">Uma carga do dia é selecionada para auditoria se o cliente atingir o percentual mínimo de ocorrências (do ranking), se o valor da carga atingir o mínimo definido, ou ambos.</p>
             <div class="criteria-grid">
                 <div class="criteria-box">
                     <div class="k">% de ocorrências por carga (mínimo)</div>
@@ -418,7 +293,7 @@
                 </div>
             </div>
             <div class="wiz-actions">
-                <button type="button" class="ghost" data-wiz-back="4">Voltar</button>
+                <button type="button" class="ghost" data-wiz-back="2">Voltar</button>
                 <button type="button" class="primary" id="wiz-btn-gerar">Gerar lista de cargas para auditar</button>
             </div>
 
@@ -458,16 +333,18 @@
     <div id="painelRelatorio" class="tab-panel">
 
         <div class="report-controls">
-            <div class="field">
-                <label>De</label>
-                <input type="date" id="relDataInicio">
+            <div style="flex:1; min-width:280px;">
+                <div class="dropzone" id="rel-dropzone" style="padding:20px;">
+                    <input type="file" id="rel-file-input" accept=".pdf" multiple>
+                    <div class="label">Envie os PDFs das auditorias realizadas</div>
+                    <div class="hint">Selecione ou arraste um ou mais arquivos .pdf — o sistema lê todos e monta o relatório</div>
+                </div>
+                <div id="rel-file-list" style="margin-top:10px;"></div>
             </div>
-            <div class="field">
-                <label>Até</label>
-                <input type="date" id="relDataFim">
+            <div style="display:flex; flex-direction:column; gap:8px; padding-top:4px;">
+                <button type="button" onclick="relProcessarEGerar()">📄 Gerar Relatório</button>
+                <button type="button" class="secondary" id="relBtnImprimir" style="display:none;" onclick="window.print()">🖨 Imprimir / Salvar como PDF</button>
             </div>
-            <button type="button" onclick="gerarRelatorioSemanal()">📄 Gerar Relatório</button>
-            <button type="button" class="secondary" id="relBtnImprimir" style="display:none;" onclick="window.print()">🖨 Imprimir / Salvar como PDF</button>
         </div>
 
         <div id="relMsg" style="text-align:center; padding:20px; color:var(--gray); font-size:12.5px;"></div>
@@ -475,19 +352,17 @@
         <div id="reportOutput">
             <div class="report-sheet">
                 <div class="report-title">
-                    <h1>Relatório Semanal de Auditorias — Grupo Krona</h1>
+                    <h1>Relatório Consolidado de Auditorias — Grupo Krona</h1>
                     <p id="relPeriodoTexto"></p>
                 </div>
 
                 <div class="cards" id="relCards"></div>
 
-                <div id="relComparativo" style="margin-bottom:14px;"></div>
-
                 <div class="report-narrative" id="relNarrativaGeral"></div>
 
-                <div class="report-section-title">Gráficos do Período</div>
+                <div class="report-section-title">Gráficos do Lote Enviado</div>
                 <div class="chart-row">
-                    <div class="chart-box"><h3>Score Comportamental Médio por Dia</h3><canvas id="chartScoreDia"></canvas></div>
+                    <div class="chart-box"><h3>Score Geral Médio por Dia</h3><canvas id="chartScoreDia"></canvas></div>
                     <div class="chart-box"><h3>Auditorias por Unidade</h3><canvas id="chartUnidade"></canvas></div>
                 </div>
                 <div class="chart-row">
@@ -495,8 +370,12 @@
                     <div class="chart-box"><h3>Divergências por Transportadora</h3><canvas id="chartTransportadora"></canvas></div>
                 </div>
                 <div class="chart-row">
-                    <div class="chart-box"><h3>Score Médio por Auditor</h3><canvas id="chartAuditor"></canvas></div>
-                    <div class="chart-box"><h3>Score Médio por Conferente</h3><canvas id="chartConferente"></canvas></div>
+                    <div class="chart-box"><h3>Score Geral Médio por Auditor</h3><canvas id="chartAuditor"></canvas></div>
+                    <div class="chart-box"><h3>Score Geral Médio por Conferente</h3><canvas id="chartConferente"></canvas></div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-box"><h3>Classificação Operacional</h3><canvas id="chartClassificacao"></canvas></div>
+                    <div class="chart-box"><h3>Score Conferente × Score Expedição (médias)</h3><canvas id="chartConferenteExpedicao"></canvas></div>
                 </div>
 
                 <div class="report-section-title">Desvios Comportamentais Consolidados</div>
@@ -515,305 +394,29 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz0uAAdyEF0UXPhJxwkJbX17TzqlkL74pmNTTUzfR05AM51znicJzJHBJ2QMuiSXmnj/exec';
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
         function mostrarAba(nome) {
-            document.getElementById('painelHistorico').classList.toggle('active', nome === 'historico');
             document.getElementById('painelSelecao').classList.toggle('active', nome === 'selecao');
             document.getElementById('painelRelatorio').classList.toggle('active', nome === 'relatorio');
-            document.getElementById('tabBtnHistorico').classList.toggle('active', nome === 'historico');
             document.getElementById('tabBtnSelecao').classList.toggle('active', nome === 'selecao');
             document.getElementById('tabBtnRelatorio').classList.toggle('active', nome === 'relatorio');
         }
 
-        let todasAuditorias = [];
-        let auditoriasFiltradas = [];
-        let ordenacaoAtual = { campo: 'timestamp', direcao: 'desc' };
-
-        function temPendenciaDeTratativa(a) {
-            const temDivergencia = a.divergencia === 'Sim';
-            const planoVazio = !a.listaPlanosAcao || a.listaPlanosAcao.trim() === '';
-            return temDivergencia && planoVazio;
-        }
-
-        function parseScorePct(str) {
-            if (!str) return null;
-            const idx = String(str).indexOf('%');
-            if (idx === -1) return null;
-            const num = parseInt(String(str).substring(0, idx), 10);
-            return isNaN(num) ? null : num;
-        }
-
-        function badgeScore(scoreStr) {
-            const pct = parseScorePct(scoreStr);
-            if (pct === null) return '<span class="badge gray">N/A</span>';
-            const classe = pct >= 90 ? 'ok' : (pct >= 70 ? 'warn' : 'bad');
-            return `<span class="badge ${classe}">${pct}%</span>`;
-        }
-
-        function popularFiltro(id, valores) {
-            const select = document.getElementById(id);
-            const unicos = [...new Set(valores.filter(v => v && String(v).trim() !== ''))].sort();
-            unicos.forEach(v => {
-                const opt = document.createElement('option');
-                opt.value = v;
-                opt.textContent = v;
-                select.appendChild(opt);
-            });
-        }
-
-        async function carregarAuditorias(tudo) {
-            try {
-                const url = GOOGLE_SCRIPT_URL + '?action=listarAuditorias' + (tudo ? '&tudo=1' : '&dias=90');
-                const resposta = await fetch(url);
-                if (!resposta.ok) throw new Error('Resposta não OK do servidor (' + resposta.status + ')');
-                const json = await resposta.json();
-                if (!json || json.status !== 'success') {
-                    throw new Error((json && json.message) || 'Resposta inválida do servidor');
-                }
-                todasAuditorias = json.auditorias || [];
-
-                const avisoEl = document.getElementById('periodoAvisoMsg');
-                if (avisoEl) {
-                    if (tudo) {
-                        avisoEl.innerHTML = `Mostrando o histórico completo (${todasAuditorias.length} auditoria(s)).`;
-                    } else if (json.totalNaAba && json.totalNaAba > todasAuditorias.length) {
-                        avisoEl.innerHTML = `Mostrando os últimos 90 dias (${todasAuditorias.length} de ${json.totalNaAba} auditoria(s) no total). ` +
-                            `<a href="#" onclick="carregarAuditorias(true); return false;" style="color:var(--krona-blue-light); font-weight:600;">Carregar histórico completo</a>`;
-                    } else {
-                        avisoEl.innerHTML = `Mostrando todas as ${todasAuditorias.length} auditoria(s) registradas.`;
-                    }
-                }
-
-                popularFiltro('filtroUnidade', todasAuditorias.map(a => a.unidade));
-                popularFiltro('filtroTransportadora', todasAuditorias.map(a => a.transportadora));
-                popularFiltro('filtroAuditor', todasAuditorias.map(a => a.auditorResponsavel));
-
-                aplicarFiltros();
-            } catch (err) {
-                console.error(err);
-                document.getElementById('loadingMsg').style.display = 'none';
-                const errorBox = document.getElementById('errorMsg');
-                errorBox.style.display = 'block';
-                errorBox.textContent = 'Não foi possível carregar as auditorias (' + err.message + '). Verifique sua conexão e recarregue a página.';
-            }
-        }
-
-        function aplicarFiltros() {
-            const unidade = document.getElementById('filtroUnidade').value;
-            const transportadora = document.getElementById('filtroTransportadora').value;
-            const auditor = document.getElementById('filtroAuditor').value;
-            const divergencia = document.getElementById('filtroDivergencia').value;
-            const busca = document.getElementById('filtroBusca').value.trim().toLowerCase();
-
-            auditoriasFiltradas = todasAuditorias.filter(a => {
-                if (unidade && a.unidade !== unidade) return false;
-                if (transportadora && a.transportadora !== transportadora) return false;
-                if (auditor && a.auditorResponsavel !== auditor) return false;
-                if (divergencia === 'Sim' && a.divergencia !== 'Sim') return false;
-                if (divergencia === 'Não' && a.divergencia !== 'Não') return false;
-                if (divergencia === 'pendente' && !temPendenciaDeTratativa(a)) return false;
-                if (busca) {
-                    const alvo = [a.auditId, a.pedido, a.cliente, a.carga].join(' ').toLowerCase();
-                    if (!alvo.includes(busca)) return false;
-                }
-                return true;
-            });
-
-            renderizarTudo();
-        }
-
-        function limparFiltros() {
-            document.getElementById('filtroUnidade').value = '';
-            document.getElementById('filtroTransportadora').value = '';
-            document.getElementById('filtroAuditor').value = '';
-            document.getElementById('filtroDivergencia').value = '';
-            document.getElementById('filtroBusca').value = '';
-            aplicarFiltros();
-        }
-
-        function ordenarPor(campo) {
-            if (ordenacaoAtual.campo === campo) {
-                ordenacaoAtual.direcao = ordenacaoAtual.direcao === 'asc' ? 'desc' : 'asc';
-            } else {
-                ordenacaoAtual = { campo: campo, direcao: 'desc' };
-            }
-            renderizarTabela();
-        }
-
-        function renderizarTudo() {
-            renderizarCards();
-            renderizarTabela();
-            renderizarGraficoTendencia();
-        }
-
-        let _chartHistoricoScoreRef = null;
-        function relParseDataBRGlobal(str) {
-            if (!str) return null;
-            const parte = String(str).split(' ')[0];
-            const partes = parte.split('/');
-            if (partes.length !== 3) return null;
-            const d = parseInt(partes[0], 10), m = parseInt(partes[1], 10), y = parseInt(partes[2], 10);
-            if (!d || !m || !y) return null;
-            return new Date(y, m - 1, d);
-        }
-
-        function renderizarGraficoTendencia() {
-            const box = document.getElementById('historicoChartBox');
-            const comData = auditoriasFiltradas
-                .map(a => ({ data: relParseDataBRGlobal(a.data), score: parseScorePct(a.scoreComportamentalPct) }))
-                .filter(x => x.data && x.score !== null)
-                .sort((a, b) => a.data - b.data);
-
-            if (comData.length < 2) {
-                box.style.display = 'none';
-                return;
-            }
-            box.style.display = 'block';
-
-            const porDia = {};
-            comData.forEach(x => {
-                const key = x.data.toLocaleDateString('pt-BR');
-                if (!porDia[key]) porDia[key] = { soma: 0, n: 0, ref: x.data };
-                porDia[key].soma += x.score;
-                porDia[key].n += 1;
-            });
-            const dias = Object.keys(porDia).sort((a, b) => porDia[a].ref - porDia[b].ref);
-
-            if (_chartHistoricoScoreRef) { _chartHistoricoScoreRef.destroy(); }
-            _chartHistoricoScoreRef = new Chart(document.getElementById('chartHistoricoScore'), {
-                type: 'line',
-                data: {
-                    labels: dias,
-                    datasets: [{
-                        label: 'Score médio (%)',
-                        data: dias.map(k => Math.round(porDia[k].soma / porDia[k].n)),
-                        borderColor: '#005691', backgroundColor: 'rgba(0,86,145,0.15)', fill: true, tension: 0.25
-                    }]
-                },
-                options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { min: 0, max: 100 } } }
-            });
-        }
-
-        function exportarHistoricoExcel() {
-            if (!auditoriasFiltradas.length) {
-                alert('Não há auditorias para exportar com os filtros atuais.');
-                return;
-            }
-            const linhas = auditoriasFiltradas.map(a => ({
-                'Data/Hora': a.timestamp || '',
-                'ID': a.auditId || '',
-                'Data': a.data || '',
-                'Unidade': a.unidade || '',
-                'Transportadora': a.transportadora || '',
-                'Cliente': a.cliente || '',
-                'Auditor': a.auditorResponsavel || '',
-                'Conferente': a.conferenteEmbarque || '',
-                'Score (%)': parseScorePct(a.scoreComportamentalPct),
-                'Divergência': a.divergencia || '',
-                'Status': temPendenciaDeTratativa(a) ? 'Pendente de tratativa' : (a.divergencia === 'Sim' ? 'Divergência tratada' : 'Conforme'),
-                'Link PDF': a.linkPdf || '',
-                'Link Pasta': a.linkPasta || ''
-            }));
-            const ws = XLSX.utils.json_to_sheet(linhas);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'Auditorias');
-            const nomeArquivo = 'auditorias_' + new Date().toISOString().slice(0, 10) + '.xlsx';
-            XLSX.writeFile(wb, nomeArquivo);
-        }
-
-        function renderizarCards() {
-            const total = auditoriasFiltradas.length;
-            document.getElementById('cardTotal').textContent = total;
-
-            const scores = auditoriasFiltradas.map(a => parseScorePct(a.scoreComportamentalPct)).filter(s => s !== null);
-            const scoreMedio = scores.length ? Math.round(scores.reduce((s, v) => s + v, 0) / scores.length) : null;
-            document.getElementById('cardScoreMedio').textContent = scoreMedio !== null ? scoreMedio + '%' : '-';
-
-            const comDivergencia = auditoriasFiltradas.filter(a => a.divergencia === 'Sim').length;
-            document.getElementById('cardDivergencia').textContent = total ? comDivergencia + ' (' + Math.round(comDivergencia / total * 100) + '%)' : '0';
-
-            const pendentes = auditoriasFiltradas.filter(temPendenciaDeTratativa).length;
-            document.getElementById('cardPendente').textContent = pendentes;
-        }
-
-        function renderizarTabela() {
-            const tbody = document.getElementById('auditTableBody');
-            const tabela = document.getElementById('auditTable');
-            const loading = document.getElementById('loadingMsg');
-            const empty = document.getElementById('emptyMsg');
-
-            loading.style.display = 'none';
-
-            if (auditoriasFiltradas.length === 0) {
-                tabela.style.display = 'none';
-                empty.style.display = 'block';
-                return;
-            }
-            empty.style.display = 'none';
-            tabela.style.display = 'table';
-
-            const ordenadas = [...auditoriasFiltradas].sort((a, b) => {
-                let va = a[ordenacaoAtual.campo] || '';
-                let vb = b[ordenacaoAtual.campo] || '';
-                if (ordenacaoAtual.campo === 'scoreComportamentalPct') {
-                    va = parseScorePct(va) ?? -1;
-                    vb = parseScorePct(vb) ?? -1;
-                } else {
-                    va = String(va).toLowerCase();
-                    vb = String(vb).toLowerCase();
-                }
-                if (va < vb) return ordenacaoAtual.direcao === 'asc' ? -1 : 1;
-                if (va > vb) return ordenacaoAtual.direcao === 'asc' ? 1 : -1;
-                return 0;
-            });
-
-            tbody.innerHTML = ordenadas.map(a => {
-                const pendente = temPendenciaDeTratativa(a);
-                let statusBadge;
-                if (pendente) {
-                    statusBadge = '<span class="badge bad">Pendente de tratativa</span>';
-                } else if (a.divergencia === 'Sim') {
-                    statusBadge = '<span class="badge warn">Divergência tratada</span>';
-                } else {
-                    statusBadge = '<span class="badge ok">Conforme</span>';
-                }
-
-                const links = [];
-                if (a.linkPdf) links.push(`<a class="link-btn" href="${a.linkPdf}" target="_blank" rel="noopener">PDF</a>`);
-                if (a.linkPasta) links.push(`<a class="link-btn" href="${a.linkPasta}" target="_blank" rel="noopener">Pasta</a>`);
-
-                return `<tr>
-                    <td>${a.timestamp || '-'}</td>
-                    <td>${a.auditId || '-'}</td>
-                    <td>${a.unidade || '-'}</td>
-                    <td>${a.transportadora || '-'}</td>
-                    <td>${a.auditorResponsavel || '-'}</td>
-                    <td>${badgeScore(a.scoreComportamentalPct)}</td>
-                    <td>${a.divergencia || '-'}</td>
-                    <td>${statusBadge}</td>
-                    <td>${links.join(' &nbsp;|&nbsp; ') || '-'}</td>
-                </tr>`;
-            }).join('');
-        }
-
-        carregarAuditorias();
-
         // ==========================================================
-        // SELEÇÃO DE CARGAS — assistente de cruzamento de planilhas
+        // SELEÇÃO DE CARGAS — recebe o Ranking pronto + Cargas do Dia
         // ==========================================================
         (function () {
             const wizState = {
-                ocorrencias: { rows: [], headers: [], workbook: null },
-                cargas: { rows: [], headers: [], workbook: null },
+                ranking: { rows: [], headers: [], workbook: null },
                 diaria: { rows: [], headers: [], workbook: null },
-                clientStats: {},
+                rankingMap: {},
                 cleanCodes: true,
                 criteria: { percent: 5, valor: 0 }
             };
 
-            // Lembra os últimos critérios usados, para não precisar redigitar toda vez
             try {
                 const ultimos = JSON.parse(localStorage.getItem('wizUltimosCriterios') || 'null');
                 if (ultimos && typeof ultimos.percent === 'number' && typeof ultimos.valor === 'number') {
@@ -827,13 +430,9 @@
                 return String(v == null ? '' : v).trim().toUpperCase().replace(/\s+/g, ' ');
             }
 
-            // Monta a chave de cruzamento: usa o código do cliente quando disponível
-            // (muito mais confiável), caindo pro nome normalizado quando não há código.
             function wizChaveCliente(nome, codigo) {
                 const codigoLimpo = codigo == null ? '' : String(codigo).trim();
-                if (codigoLimpo) {
-                    return 'COD::' + codigoLimpo.toUpperCase();
-                }
+                if (codigoLimpo) return 'COD::' + codigoLimpo.toUpperCase();
                 return 'NOME::' + wizNormKey(nome);
             }
 
@@ -856,26 +455,23 @@
                 return prev[bl];
             }
 
-            // Busca o cliente exato (por código ou por nome); se não encontrar E a chave for
-            // baseada em nome, procura o nome mais parecido dentro de um limite de diferença
-            // (correspondência aproximada, só faz sentido comparando nome com nome).
             function wizFindClientStat(key) {
-                if (wizState.clientStats[key]) {
-                    return { stat: wizState.clientStats[key], aproximado: false };
+                if (wizState.rankingMap[key]) {
+                    return { stat: wizState.rankingMap[key], aproximado: false };
                 }
                 if (key.indexOf('NOME::') !== 0) {
                     return { stat: null, aproximado: false };
                 }
                 let melhor = null, menorDist = Infinity;
-                const limite = Math.max(2, Math.round(key.length * 0.15)); // até ~15% de diferença
-                Object.keys(wizState.clientStats).forEach(k => {
-                    if (k.indexOf('NOME::') !== 0) return; // só compara nome com nome
+                const limite = Math.max(2, Math.round(key.length * 0.15));
+                Object.keys(wizState.rankingMap).forEach(k => {
+                    if (k.indexOf('NOME::') !== 0) return;
                     if (Math.abs(k.length - key.length) > limite) return;
                     const dist = wizLevenshtein(key, k);
                     if (dist < menorDist) { menorDist = dist; melhor = k; }
                 });
                 if (melhor && menorDist <= limite) {
-                    return { stat: wizState.clientStats[melhor], aproximado: true, nomeEncontrado: wizState.clientStats[melhor].display };
+                    return { stat: wizState.rankingMap[melhor], aproximado: true, nomeEncontrado: wizState.rankingMap[melhor].display };
                 }
                 return { stat: null, aproximado: false };
             }
@@ -883,8 +479,6 @@
             function wizCleanClientName(v) {
                 let s = String(v == null ? '' : v).trim();
                 if (wizState.cleanCodes) {
-                    // remove sequência inicial de números/pontos/traços/barras/espaços
-                    // ex: "069356 - 62.854.004 NOME DO CLIENTE" -> "NOME DO CLIENTE"
                     s = s.replace(/^[\d.\-\/\s]+/, '').trim();
                 }
                 return s;
@@ -905,12 +499,22 @@
                 return isNaN(n) ? 0 : n;
             }
 
+            function wizParsePct(v) {
+                if (v === '' || v == null) return null;
+                let s = String(v).trim().replace('%', '').replace(',', '.');
+                if (!s) return null;
+                const n = parseFloat(s);
+                if (isNaN(n)) return null;
+                // se veio como fração (0.12) em vez de percentual (12), normaliza
+                return (n > 0 && n <= 1) ? n * 100 : n;
+            }
+
             function wizFmtBRL(n) {
                 return n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
             }
 
             function wizFmtPct(n) {
-                if (n === null) return '—';
+                if (n === null || n === undefined || isNaN(n)) return '—';
                 return n.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + '%';
             }
 
@@ -930,35 +534,34 @@
                 wizSalvarProgresso();
             }
 
-            const WIZ_SESSION_KEY = 'wizSelecaoCargasProgresso';
+            const WIZ_SESSION_KEY = 'wizSelecaoCargasProgressoV2';
 
             function wizSalvarProgresso() {
                 try {
                     const snapshot = {
                         step: wizState._step || 1,
-                        ocorrencias: { rows: wizState.ocorrencias.rows, headers: wizState.ocorrencias.headers },
-                        cargas: { rows: wizState.cargas.rows, headers: wizState.cargas.headers },
+                        ranking: { rows: wizState.ranking.rows, headers: wizState.ranking.headers },
                         diaria: { rows: wizState.diaria.rows, headers: wizState.diaria.headers },
-                        clientStats: wizState.clientStats,
+                        rankingMap: wizState.rankingMap,
                         cleanCodes: wizState.cleanCodes,
                         criteria: wizState.criteria,
                         selecoes: {
-                            colOcor: document.getElementById('wiz-map-ocor-cliente') ? document.getElementById('wiz-map-ocor-cliente').value : '',
-                            colCarga: document.getElementById('wiz-map-carga-cliente') ? document.getElementById('wiz-map-carga-cliente').value : '',
-                            colOcorCodigo: document.getElementById('wiz-map-ocor-codigo') ? document.getElementById('wiz-map-ocor-codigo').value : '',
-                            colCargaCodigo: document.getElementById('wiz-map-carga-codigo') ? document.getElementById('wiz-map-carga-codigo').value : '',
+                            colRankCliente: document.getElementById('wiz-map-rank-cliente') ? document.getElementById('wiz-map-rank-cliente').value : '',
+                            colRankCodigo: document.getElementById('wiz-map-rank-codigo') ? document.getElementById('wiz-map-rank-codigo').value : '',
+                            colRankPct: document.getElementById('wiz-map-rank-pct') ? document.getElementById('wiz-map-rank-pct').value : '',
+                            colRankOcor: document.getElementById('wiz-map-rank-ocor') ? document.getElementById('wiz-map-rank-ocor').value : '',
+                            colRankCargas: document.getElementById('wiz-map-rank-cargas') ? document.getElementById('wiz-map-rank-cargas').value : '',
                             colDiaCliente: document.getElementById('wiz-map-dia-cliente') ? document.getElementById('wiz-map-dia-cliente').value : '',
+                            colDiaCodigo: document.getElementById('wiz-map-dia-codigo') ? document.getElementById('wiz-map-dia-codigo').value : '',
                             colDiaNumero: document.getElementById('wiz-map-dia-numero') ? document.getElementById('wiz-map-dia-numero').value : '',
                             colDiaValor: document.getElementById('wiz-map-dia-valor') ? document.getElementById('wiz-map-dia-valor').value : '',
-                            colDiaHorario: document.getElementById('wiz-map-dia-horario') ? document.getElementById('wiz-map-dia-horario').value : '',
-                            colDiaCodigo: document.getElementById('wiz-map-dia-codigo') ? document.getElementById('wiz-map-dia-codigo').value : ''
+                            colDiaHorario: document.getElementById('wiz-map-dia-horario') ? document.getElementById('wiz-map-dia-horario').value : ''
                         },
                         flagged: window._wizFlaggedAtual || null,
                         salvoEm: new Date().toISOString()
                     };
                     sessionStorage.setItem(WIZ_SESSION_KEY, JSON.stringify(snapshot));
                 } catch (e) {
-                    // sessionStorage indisponível ou cota estourada — segue sem persistir, não é crítico
                     console.warn('Não foi possível salvar o progresso da Seleção de Cargas nesta sessão.', e);
                 }
             }
@@ -976,57 +579,48 @@
                     snap = JSON.parse(raw);
                 } catch (e) { return; }
 
-                wizState.ocorrencias.rows = snap.ocorrencias.rows;
-                wizState.ocorrencias.headers = snap.ocorrencias.headers;
-                wizState.cargas.rows = snap.cargas.rows;
-                wizState.cargas.headers = snap.cargas.headers;
+                wizState.ranking.rows = snap.ranking.rows;
+                wizState.ranking.headers = snap.ranking.headers;
                 wizState.diaria.rows = snap.diaria.rows;
                 wizState.diaria.headers = snap.diaria.headers;
-                wizState.clientStats = snap.clientStats;
+                wizState.rankingMap = snap.rankingMap;
                 wizState.cleanCodes = snap.cleanCodes;
                 wizState.criteria = snap.criteria;
 
-                if (wizState.ocorrencias.headers.length) {
-                    document.getElementById('wiz-dz-ocorrencias').classList.add('filled');
-                    document.getElementById('wiz-fn-ocorrencias').textContent = '(restaurado da sessão anterior)';
-                }
-                if (wizState.cargas.headers.length) {
-                    document.getElementById('wiz-dz-cargas').classList.add('filled');
-                    document.getElementById('wiz-fn-cargas').textContent = '(restaurado da sessão anterior)';
-                }
-                document.getElementById('wiz-btn-to-2').disabled = !(wizState.ocorrencias.rows.length && wizState.cargas.rows.length);
-                document.getElementById('wiz-opt-clean-codes').checked = wizState.cleanCodes;
-
-                if (wizState.ocorrencias.headers.length) {
-                    wizFillSelect(document.getElementById('wiz-map-ocor-cliente'), wizState.ocorrencias.headers);
-                    document.getElementById('wiz-map-ocor-cliente').value = snap.selecoes.colOcor;
-                    wizFillSelect(document.getElementById('wiz-map-ocor-codigo'), wizState.ocorrencias.headers, 'Nenhum (usar nome)');
-                    document.getElementById('wiz-map-ocor-codigo').value = snap.selecoes.colOcorCodigo || '';
-                }
-                if (wizState.cargas.headers.length) {
-                    wizFillSelect(document.getElementById('wiz-map-carga-cliente'), wizState.cargas.headers);
-                    document.getElementById('wiz-map-carga-cliente').value = snap.selecoes.colCarga;
-                    wizFillSelect(document.getElementById('wiz-map-carga-codigo'), wizState.cargas.headers, 'Nenhum (usar nome)');
-                    document.getElementById('wiz-map-carga-codigo').value = snap.selecoes.colCargaCodigo || '';
-                }
-                if (Object.keys(wizState.clientStats).length) {
-                    wizRenderClientTable();
+                if (wizState.ranking.headers.length) {
+                    document.getElementById('wiz-dz-ranking').classList.add('filled');
+                    document.getElementById('wiz-fn-ranking').textContent = '(restaurado da sessão anterior)';
                 }
                 if (wizState.diaria.headers.length) {
                     document.getElementById('wiz-dz-diaria').classList.add('filled');
                     document.getElementById('wiz-fn-diaria').textContent = '(restaurado da sessão anterior)';
-                    document.getElementById('wiz-map-diaria-wrap').style.display = 'grid';
+                }
+                document.getElementById('wiz-btn-to-2').disabled = !(wizState.ranking.rows.length && wizState.diaria.rows.length);
+                document.getElementById('wiz-opt-clean-codes').checked = wizState.cleanCodes;
+
+                if (wizState.ranking.headers.length) {
+                    wizFillSelect(document.getElementById('wiz-map-rank-cliente'), wizState.ranking.headers, 'Nenhuma');
+                    wizFillSelect(document.getElementById('wiz-map-rank-codigo'), wizState.ranking.headers, 'Nenhuma');
+                    wizFillSelect(document.getElementById('wiz-map-rank-pct'), wizState.ranking.headers, 'Nenhuma');
+                    wizFillSelect(document.getElementById('wiz-map-rank-ocor'), wizState.ranking.headers, 'Nenhuma');
+                    wizFillSelect(document.getElementById('wiz-map-rank-cargas'), wizState.ranking.headers, 'Nenhuma');
+                    document.getElementById('wiz-map-rank-cliente').value = snap.selecoes.colRankCliente || '';
+                    document.getElementById('wiz-map-rank-codigo').value = snap.selecoes.colRankCodigo || '';
+                    document.getElementById('wiz-map-rank-pct').value = snap.selecoes.colRankPct || '';
+                    document.getElementById('wiz-map-rank-ocor').value = snap.selecoes.colRankOcor || '';
+                    document.getElementById('wiz-map-rank-cargas').value = snap.selecoes.colRankCargas || '';
+                }
+                if (wizState.diaria.headers.length) {
                     wizFillSelect(document.getElementById('wiz-map-dia-cliente'), wizState.diaria.headers);
+                    wizFillSelect(document.getElementById('wiz-map-dia-codigo'), wizState.diaria.headers, 'Nenhum (usar nome)');
                     wizFillSelect(document.getElementById('wiz-map-dia-numero'), wizState.diaria.headers);
                     wizFillSelect(document.getElementById('wiz-map-dia-valor'), wizState.diaria.headers);
                     wizFillSelect(document.getElementById('wiz-map-dia-horario'), wizState.diaria.headers, 'Nenhum (não informar)');
-                    wizFillSelect(document.getElementById('wiz-map-dia-codigo'), wizState.diaria.headers, 'Nenhum (usar nome)');
-                    document.getElementById('wiz-map-dia-cliente').value = snap.selecoes.colDiaCliente;
-                    document.getElementById('wiz-map-dia-numero').value = snap.selecoes.colDiaNumero;
-                    document.getElementById('wiz-map-dia-valor').value = snap.selecoes.colDiaValor;
-                    document.getElementById('wiz-map-dia-horario').value = snap.selecoes.colDiaHorario;
+                    document.getElementById('wiz-map-dia-cliente').value = snap.selecoes.colDiaCliente || '';
                     document.getElementById('wiz-map-dia-codigo').value = snap.selecoes.colDiaCodigo || '';
-                    document.getElementById('wiz-btn-to-5').disabled = false;
+                    document.getElementById('wiz-map-dia-numero').value = snap.selecoes.colDiaNumero || '';
+                    document.getElementById('wiz-map-dia-valor').value = snap.selecoes.colDiaValor || '';
+                    document.getElementById('wiz-map-dia-horario').value = snap.selecoes.colDiaHorario || '';
                 }
 
                 document.getElementById('wiz-crit-percent').value = wizState.criteria.percent;
@@ -1046,7 +640,7 @@
                     if (!raw) return;
                     const snap = JSON.parse(raw);
                     document.getElementById('wiz-restore-text').textContent =
-                        'Você tem um progresso salvo nesta sessão (salvo em ' + new Date(snap.salvoEm).toLocaleTimeString('pt-BR') + ', etapa ' + snap.step + ' de 5).';
+                        'Você tem um progresso salvo nesta sessão (salvo em ' + new Date(snap.salvoEm).toLocaleTimeString('pt-BR') + ', etapa ' + snap.step + ' de 3).';
                     document.getElementById('wiz-restore-banner').style.display = 'flex';
                 } catch (e) { /* ignora */ }
             })();
@@ -1134,32 +728,45 @@
             }
 
             // ---------- Step 1 ----------
-            wizSetupFileInput('wiz-file-ocorrencias', 'wiz-dz-ocorrencias', 'wiz-fn-ocorrencias', 'wiz-sheet-picker-ocorrencias', 'wiz-sheet-select-ocorrencias', 'ocorrencias', wizCheckStep1Ready);
-            wizSetupFileInput('wiz-file-cargas', 'wiz-dz-cargas', 'wiz-fn-cargas', 'wiz-sheet-picker-cargas', 'wiz-sheet-select-cargas', 'cargas', wizCheckStep1Ready);
+            wizSetupFileInput('wiz-file-ranking', 'wiz-dz-ranking', 'wiz-fn-ranking', 'wiz-sheet-picker-ranking', 'wiz-sheet-select-ranking', 'ranking', wizCheckStep1Ready);
+            wizSetupFileInput('wiz-file-diaria', 'wiz-dz-diaria', 'wiz-fn-diaria', 'wiz-sheet-picker-diaria', 'wiz-sheet-select-diaria', 'diaria', wizCheckStep1Ready);
 
             function wizCheckStep1Ready() {
-                const ok = wizState.ocorrencias.rows.length > 0 && wizState.cargas.rows.length > 0;
+                const ok = wizState.ranking.rows.length > 0 && wizState.diaria.rows.length > 0;
                 document.getElementById('wiz-btn-to-2').disabled = !ok;
             }
 
             document.getElementById('wiz-btn-to-2').addEventListener('click', function () {
                 const errEl = document.getElementById('wiz-err-1');
-                if (!wizState.ocorrencias.rows.length || !wizState.cargas.rows.length) {
+                if (!wizState.ranking.rows.length || !wizState.diaria.rows.length) {
                     errEl.textContent = 'Envie as duas planilhas antes de continuar.';
                     errEl.classList.add('visible');
                     return;
                 }
                 errEl.classList.remove('visible');
 
-                wizFillSelect(document.getElementById('wiz-map-ocor-cliente'), wizState.ocorrencias.headers);
-                wizFillSelect(document.getElementById('wiz-map-carga-cliente'), wizState.cargas.headers);
-                document.getElementById('wiz-map-ocor-cliente').value = wizGuessColumn(wizState.ocorrencias.headers, ['cliente', 'razao', 'nome fantasia', 'nome']);
-                document.getElementById('wiz-map-carga-cliente').value = wizGuessColumn(wizState.cargas.headers, ['cliente', 'razao', 'nome fantasia', 'nome']);
+                const rh = wizState.ranking.headers, dh = wizState.diaria.headers;
+                wizFillSelect(document.getElementById('wiz-map-rank-cliente'), rh, 'Nenhuma');
+                wizFillSelect(document.getElementById('wiz-map-rank-codigo'), rh, 'Nenhuma');
+                wizFillSelect(document.getElementById('wiz-map-rank-pct'), rh, 'Nenhuma');
+                wizFillSelect(document.getElementById('wiz-map-rank-ocor'), rh, 'Nenhuma');
+                wizFillSelect(document.getElementById('wiz-map-rank-cargas'), rh, 'Nenhuma');
+                document.getElementById('wiz-map-rank-cliente').value = wizGuessColumn(rh, ['cliente', 'razao', 'nome fantasia', 'nome']);
+                document.getElementById('wiz-map-rank-codigo').value = wizGuessColumn(rh, ['codigo cliente', 'cod cliente', 'cód. cliente', 'código', 'codigo', 'cnpj']);
+                document.getElementById('wiz-map-rank-pct').value = wizGuessColumn(rh, ['índice', 'indice', 'percentual', '% ocorrência', '% ocorrencia', '%']);
+                document.getElementById('wiz-map-rank-ocor').value = wizGuessColumn(rh, ['ocorrência', 'ocorrencia']);
+                document.getElementById('wiz-map-rank-cargas').value = wizGuessColumn(rh, ['nota', 'carga']);
 
-                wizFillSelect(document.getElementById('wiz-map-ocor-codigo'), wizState.ocorrencias.headers, 'Nenhum (usar nome)');
-                wizFillSelect(document.getElementById('wiz-map-carga-codigo'), wizState.cargas.headers, 'Nenhum (usar nome)');
-                document.getElementById('wiz-map-ocor-codigo').value = wizGuessColumn(wizState.ocorrencias.headers, ['codigo cliente', 'cod cliente', 'cód. cliente', 'código', 'codigo', 'cnpj']);
-                document.getElementById('wiz-map-carga-codigo').value = wizGuessColumn(wizState.cargas.headers, ['codigo cliente', 'cod cliente', 'cód. cliente', 'código', 'codigo', 'cnpj']);
+                wizFillSelect(document.getElementById('wiz-map-dia-cliente'), dh);
+                wizFillSelect(document.getElementById('wiz-map-dia-codigo'), dh, 'Nenhum (usar nome)');
+                wizFillSelect(document.getElementById('wiz-map-dia-numero'), dh);
+                wizFillSelect(document.getElementById('wiz-map-dia-valor'), dh);
+                wizFillSelect(document.getElementById('wiz-map-dia-horario'), dh, 'Nenhum (não informar)');
+                document.getElementById('wiz-map-dia-cliente').value = wizGuessColumn(dh, ['cliente', 'razao', 'nome fantasia', 'nome']);
+                document.getElementById('wiz-map-dia-codigo').value = wizGuessColumn(dh, ['codigo cliente', 'cod cliente', 'cód. cliente', 'código', 'codigo', 'cnpj']);
+                document.getElementById('wiz-map-dia-numero').value = wizGuessColumn(dh, ['carga', 'pedido', 'numero', 'nº', 'n°']);
+                document.getElementById('wiz-map-dia-valor').value = wizGuessColumn(dh, ['valor', 'total', 'preco', 'preço']);
+                document.getElementById('wiz-map-dia-horario').value = wizGuessColumn(dh, ['horario', 'horário', 'hora prevista', 'previsto', 'carregamento']);
 
                 wizShowStep(2);
             });
@@ -1171,131 +778,60 @@
 
             document.getElementById('wiz-btn-to-3').addEventListener('click', function () {
                 const errEl = document.getElementById('wiz-err-2');
-                const colOcor = document.getElementById('wiz-map-ocor-cliente').value;
-                const colCarga = document.getElementById('wiz-map-carga-cliente').value;
-                const colOcorCodigo = document.getElementById('wiz-map-ocor-codigo').value;
-                const colCargaCodigo = document.getElementById('wiz-map-carga-codigo').value;
-                if (!colOcor || !colCarga) {
-                    errEl.textContent = 'Selecione a coluna de cliente nas duas planilhas.';
+                const colRankCliente = document.getElementById('wiz-map-rank-cliente').value;
+                const colRankCodigo = document.getElementById('wiz-map-rank-codigo').value;
+                const colRankPct = document.getElementById('wiz-map-rank-pct').value;
+                const colDiaCliente = document.getElementById('wiz-map-dia-cliente').value;
+                const colDiaNumero = document.getElementById('wiz-map-dia-numero').value;
+
+                if (!colRankCliente && !colRankCodigo) {
+                    errEl.textContent = 'Selecione ao menos o nome ou o código do cliente no Ranking.';
+                    errEl.classList.add('visible');
+                    return;
+                }
+                if (!colRankPct) {
+                    errEl.textContent = 'Selecione a coluna de % de Ocorrências (Índice) no Ranking.';
+                    errEl.classList.add('visible');
+                    return;
+                }
+                if (!colDiaCliente || !colDiaNumero) {
+                    errEl.textContent = 'Selecione ao menos a coluna de cliente e a de número da carga em Cargas do Dia.';
                     errEl.classList.add('visible');
                     return;
                 }
                 errEl.classList.remove('visible');
                 wizState.cleanCodes = document.getElementById('wiz-opt-clean-codes').checked;
-                wizComputeClientStats(colOcor, colCarga, colOcorCodigo, colCargaCodigo);
-                wizRenderClientTable();
+                wizBuildRankingMap();
                 wizShowStep(3);
             });
 
-            function wizChaveCliente(nome, codigo) {
-                const codigoLimpo = codigo ? String(codigo).trim() : '';
-                if (codigoLimpo) return 'COD::' + codigoLimpo.toUpperCase();
-                return 'NOME::' + wizNormKey(nome);
-            }
+            function wizBuildRankingMap() {
+                const colCliente = document.getElementById('wiz-map-rank-cliente').value;
+                const colCodigo = document.getElementById('wiz-map-rank-codigo').value;
+                const colPct = document.getElementById('wiz-map-rank-pct').value;
+                const colOcor = document.getElementById('wiz-map-rank-ocor').value;
+                const colCargas = document.getElementById('wiz-map-rank-cargas').value;
 
-            function wizComputeClientStats(colOcor, colCarga, colOcorCodigo, colCargaCodigo) {
-                const ocorCount = {};
-                const cargaCount = {};
-                const display = {};
-
-                wizState.ocorrencias.rows.forEach(row => {
-                    const nome = wizCleanClientName(row[colOcor]);
-                    if (!nome) return;
-                    const codigo = colOcorCodigo ? row[colOcorCodigo] : '';
+                const map = {};
+                wizState.ranking.rows.forEach(row => {
+                    const nome = colCliente ? wizCleanClientName(row[colCliente]) : '';
+                    const codigo = colCodigo ? row[colCodigo] : '';
+                    if (!nome && !String(codigo || '').trim()) return;
                     const key = wizChaveCliente(nome, codigo);
-                    ocorCount[key] = (ocorCount[key] || 0) + 1;
-                    if (!display[key]) display[key] = nome;
+                    map[key] = {
+                        display: nome || String(codigo).trim(),
+                        pct: colPct ? wizParsePct(row[colPct]) : null,
+                        ocorrencias: colOcor ? wizParseNumber(row[colOcor]) : null,
+                        cargas: colCargas ? wizParseNumber(row[colCargas]) : null
+                    };
                 });
-
-                wizState.cargas.rows.forEach(row => {
-                    const nome = wizCleanClientName(row[colCarga]);
-                    if (!nome) return;
-                    const codigo = colCargaCodigo ? row[colCargaCodigo] : '';
-                    const key = wizChaveCliente(nome, codigo);
-                    cargaCount[key] = (cargaCount[key] || 0) + 1;
-                    if (!display[key]) display[key] = nome;
-                });
-
-                const stats = {};
-                Object.keys(display).forEach(key => {
-                    const ocor = ocorCount[key] || 0;
-                    const cargas = cargaCount[key] || 0;
-                    // pct fica null (não "100%") quando não há carga correspondente no histórico —
-                    // isso normalmente indica que os nomes/códigos não bateram entre as planilhas, não que
-                    // o cliente seja 100% de risco.
-                    const pct = cargas > 0 ? (ocor / cargas * 100) : null;
-                    stats[key] = { display: display[key], ocorrencias: ocor, cargas: cargas, pct: pct };
-                });
-
-                wizState.clientStats = stats;
+                wizState.rankingMap = map;
             }
 
-            function wizRenderClientTable() {
-                const tbody = document.getElementById('wiz-tbody-clientes');
-                const entries = Object.values(wizState.clientStats).sort((a, b) => (b.pct ?? -1) - (a.pct ?? -1));
-                const maxPct = Math.max(1, ...entries.map(e => e.pct ?? 0));
-
-                if (!entries.length) {
-                    tbody.innerHTML = '<tr><td colspan="5" class="empty">Nenhum cliente identificado nas planilhas enviadas.</td></tr>';
-                    return;
-                }
-
-                tbody.innerHTML = entries.map(e => {
-                    const overThreshold = e.pct !== null && e.pct >= wizState.criteria.percent;
-                    const barColor = overThreshold ? 'var(--bad)' : 'var(--krona-blue-light)';
-                    const barWidth = e.pct === null ? 0 : (e.pct / maxPct * 100);
-                    return '<tr' + (overThreshold ? ' class="row-flag"' : '') + '>' +
-                        '<td>' + wizEscapeHtml(e.display) + '</td>' +
-                        '<td class="num">' + e.ocorrencias + '</td>' +
-                        '<td class="num">' + e.cargas + '</td>' +
-                        '<td class="num">' + wizFmtPct(e.pct) + '</td>' +
-                        '<td class="bar-cell"><div class="bar-track"><div class="bar-fill" style="width:' + barWidth + '%;background:' + barColor + ';"></div></div></td>' +
-                        '</tr>';
-                }).join('');
-            }
-
-            // ---------- Step 3 -> 4: upload da carga do dia ----------
-            document.getElementById('wiz-btn-to-4').addEventListener('click', function () {
-                wizShowStep(4);
-            });
-
-            wizSetupFileInput('wiz-file-diaria', 'wiz-dz-diaria', 'wiz-fn-diaria', 'wiz-sheet-picker-diaria', 'wiz-sheet-select-diaria', 'diaria', wizOnDiariaLoaded);
-
-            function wizOnDiariaLoaded() {
-                const headers = wizState.diaria.headers;
-                document.getElementById('wiz-map-diaria-wrap').style.display = 'grid';
-                wizFillSelect(document.getElementById('wiz-map-dia-cliente'), headers);
-                wizFillSelect(document.getElementById('wiz-map-dia-numero'), headers);
-                wizFillSelect(document.getElementById('wiz-map-dia-valor'), headers);
-                wizFillSelect(document.getElementById('wiz-map-dia-horario'), headers, 'Nenhum (não informar)');
-                wizFillSelect(document.getElementById('wiz-map-dia-codigo'), headers, 'Nenhum (usar nome)');
-                document.getElementById('wiz-map-dia-cliente').value = wizGuessColumn(headers, ['cliente', 'razao', 'nome fantasia', 'nome']);
-                document.getElementById('wiz-map-dia-numero').value = wizGuessColumn(headers, ['carga', 'pedido', 'numero', 'nº', 'n°']);
-                document.getElementById('wiz-map-dia-valor').value = wizGuessColumn(headers, ['valor', 'total', 'preco', 'preço']);
-                document.getElementById('wiz-map-dia-horario').value = wizGuessColumn(headers, ['horario', 'horário', 'hora prevista', 'previsto', 'carregamento']);
-                document.getElementById('wiz-map-dia-codigo').value = wizGuessColumn(headers, ['codigo cliente', 'cod cliente', 'cód. cliente', 'código', 'codigo', 'cnpj']);
-                document.getElementById('wiz-btn-to-5').disabled = false;
-                wizSalvarProgresso();
-            }
-
-            document.getElementById('wiz-btn-to-5').addEventListener('click', function () {
-                const errEl = document.getElementById('wiz-err-4');
-                const colCliente = document.getElementById('wiz-map-dia-cliente').value;
-                const colNumero = document.getElementById('wiz-map-dia-numero').value;
-                if (!colCliente || !colNumero) {
-                    errEl.textContent = 'Selecione ao menos a coluna de cliente e a de número da carga.';
-                    errEl.classList.add('visible');
-                    return;
-                }
-                errEl.classList.remove('visible');
-                wizShowStep(5);
-            });
-
-            // ---------- Step 5: critérios e geração do resultado ----------
+            // ---------- Step 3: critérios e geração do resultado ----------
             document.getElementById('wiz-btn-gerar').addEventListener('click', function () {
                 wizState.criteria.percent = wizParseNumber(document.getElementById('wiz-crit-percent').value);
                 wizState.criteria.valor = wizParseNumber(document.getElementById('wiz-crit-valor').value);
-                wizRenderClientTable(); // reaplica destaque na tabela do passo 3 com o novo critério
 
                 const colCliente = document.getElementById('wiz-map-dia-cliente').value;
                 const colNumero = document.getElementById('wiz-map-dia-numero').value;
@@ -1316,7 +852,7 @@
 
                     const pctCliente = stat ? stat.pct : null;
                     const motivos = [];
-                    if (pctCliente !== null && pctCliente >= wizState.criteria.percent) {
+                    if (pctCliente !== null && pctCliente !== undefined && pctCliente >= wizState.criteria.percent) {
                         motivos.push('% de ocorrências (' + wizFmtPct(pctCliente) + (busca.aproximado ? ', correspondência aproximada com "' + busca.nomeEncontrado + '"' : '') + ')');
                     }
                     if (colValor && wizState.criteria.valor > 0 && valor >= wizState.criteria.valor) {
@@ -1442,43 +978,14 @@
         })();
 
         // ==========================================================
-        // RELATÓRIO SEMANAL
+        // RELATÓRIO — leitura e consolidação dos PDFs de auditoria
         // ==========================================================
         (function () {
             const relCharts = {};
-
-            // Preenche o período padrão (últimos 7 dias) assim que a página carrega
-            const hoje = new Date();
-            const seteDiasAtras = new Date(hoje);
-            seteDiasAtras.setDate(hoje.getDate() - 6);
-            document.getElementById('relDataFim').valueAsDate = hoje;
-            document.getElementById('relDataInicio').valueAsDate = seteDiasAtras;
+            let relAuditoriasProcessadas = [];
 
             function relEscapeHtml(s) {
                 return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-            }
-
-            function relParseDataBR(str) {
-                if (!str) return null;
-                const parte = String(str).split(' ')[0];
-                const partes = parte.split('/');
-                if (partes.length !== 3) return null;
-                const d = parseInt(partes[0], 10), m = parseInt(partes[1], 10), y = parseInt(partes[2], 10);
-                if (!d || !m || !y) return null;
-                return new Date(y, m - 1, d);
-            }
-
-            function relFmtDataBR(date) {
-                return date.toLocaleDateString('pt-BR');
-            }
-
-            function relParseDivergencias(str) {
-                if (!str) return [];
-                return str.split(' | ').filter(s => s.trim()).map(seg => {
-                    const m = seg.match(/^#(\S+)\s+(.+?)\s+>\s+(.+?)(?:\s+\((.+)\))?$/);
-                    if (!m) return { id: '', macro: 'Outro', micro: seg, detalhe: '' };
-                    return { id: m[1], macro: m[2], micro: m[3], detalhe: m[4] || '' };
-                });
             }
 
             function relDestroyChart(id) {
@@ -1492,144 +999,344 @@
                 return out;
             }
 
-            window.gerarRelatorioSemanal = function () {
+            function relFmtDataBR(date) {
+                return date.toLocaleDateString('pt-BR');
+            }
+
+            function relParseDataISO(str) {
+                if (!str) return null;
+                const m = String(str).trim().match(/^(\d{4})-(\d{2})-(\d{2})/);
+                if (!m) return null;
+                return new Date(parseInt(m[1], 10), parseInt(m[2], 10) - 1, parseInt(m[3], 10));
+            }
+
+            function relPendente(a) {
+                return a.divergencia === 'Sim' && !a.temPlanoAcao;
+            }
+
+            // ---------- Extração do texto do PDF, agrupado em "linhas" por posição ----------
+            function relPdfBuildLines(textContent) {
+                const items = textContent.items
+                    .filter(it => it.str && it.str.trim() !== '')
+                    .map(it => ({ str: it.str, x: it.transform[4], y: it.transform[5] }));
+                items.sort((a, b) => b.y - a.y);
+                const clusters = [];
+                items.forEach(it => {
+                    const last = clusters[clusters.length - 1];
+                    if (last && Math.abs(last.y - it.y) <= 2.5) {
+                        last.items.push(it);
+                    } else {
+                        clusters.push({ y: it.y, items: [it] });
+                    }
+                });
+                clusters.forEach(c => {
+                    c.items.sort((a, b) => a.x - b.x);
+                    c.text = c.items.map(i => i.str).join(' ').replace(/\s+/g, ' ').trim();
+                });
+                return clusters;
+            }
+
+            const REL_PDF_LABELS = [
+                { boundary: true, texto: '1. CONTEXTO OPERACIONAL' },
+                'ID Auditoria', 'Hora Início', 'Tempo Total',
+                'Data', 'Unidade', 'Turno',
+                'Carga', 'Pedido', 'Cliente',
+                'Transportadora', 'Tipo Auditoria', 'Categoria',
+                'Auditor Responsável', 'Conferente (Embarque)', 'Equipe de Carga',
+                'Cubagem Proporcional à Carga', 'Equipe Reduzida', 'Conferente Novo',
+                'Auditoria no Pedido Completo',
+                { boundary: true, texto: '2. APURAÇÃO DE DIVERGÊNCIAS' },
+                'Possui Divergência', 'Tipo de Divergência', 'Responsável pela Divergência (Peso 4)',
+                { boundary: true, texto: '# Motivo Macro' }
+            ];
+
+            function relEscapeRegex(s) {
+                return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            }
+
+            function relPdfExtractLabeledFields(fullText) {
+                const out = {};
+                for (let i = 0; i < REL_PDF_LABELS.length; i++) {
+                    const entry = REL_PDF_LABELS[i];
+                    if (entry && entry.boundary) continue; // apenas usado como fronteira, não guarda valor
+                    const label = entry;
+                    let startMatch = fullText.match(new RegExp(relEscapeRegex(label) + '\\s*:\\s*'));
+                    if (!startMatch) continue;
+                    const startIdx = startMatch.index + startMatch[0].length;
+                    let endIdx = fullText.length;
+                    for (let j = i + 1; j < REL_PDF_LABELS.length; j++) {
+                        const nextEntry = REL_PDF_LABELS[j];
+                        const nextTexto = nextEntry && nextEntry.boundary ? nextEntry.texto : nextEntry;
+                        const nextRe = new RegExp(relEscapeRegex(nextTexto) + (nextEntry && nextEntry.boundary ? '' : '\\s*:'));
+                        const nextMatch = fullText.slice(startIdx).match(nextRe);
+                        if (nextMatch) { endIdx = startIdx + nextMatch.index; break; }
+                    }
+                    out[label] = fullText.slice(startIdx, endIdx).trim();
+                }
+                return out;
+            }
+
+            // O card de scores no topo do PDF mistura rótulos e valores em linhas que não ficam
+            // sempre adjacentes (o texto de classificação pode "empurrar" a ordem das linhas).
+            // Por isso os percentuais são lidos em sequência de leitura (Geral, Conferente,
+            // Expedição, nessa ordem) em vez de por proximidade direta com o rótulo.
+            function relPdfExtractCardHeader(lines) {
+                const idxCtx = lines.findIndex(l => /^1\.\s*CONTEXTO OPERACIONAL/i.test(l.text));
+                const headerLines = lines.slice(0, idxCtx === -1 ? lines.length : idxCtx);
+                const pctMatches = [];
+                headerLines.forEach(l => {
+                    const matches = l.text.match(/\d+\s*%/g);
+                    if (matches) matches.forEach(m => pctMatches.push(parseInt(m, 10)));
+                });
+                let classificacao = '';
+                const classIdx = headerLines.findIndex(l => /CLASSIFICAÇÃO OPERACIONAL/i.test(l.text));
+                if (classIdx !== -1) {
+                    for (let i = classIdx + 1; i < headerLines.length; i++) {
+                        const t = headerLines[i].text;
+                        if (!t) continue;
+                        if (/^SCORE (GERAL|CONFERENTE|EXPEDIÇÃO)/i.test(t)) continue;
+                        if (/^\d{1,2}:\d{2}(:\d{2})?$/.test(t)) continue;
+                        if (/^\d+\s*%/.test(t)) continue;
+                        classificacao = t;
+                        break;
+                    }
+                }
+                return {
+                    scoreGeral: pctMatches.length > 0 ? pctMatches[0] : null,
+                    scoreConferente: pctMatches.length > 1 ? pctMatches[1] : null,
+                    scoreExpedicao: pctMatches.length > 2 ? pctMatches[2] : null,
+                    classificacao: classificacao
+                };
+            }
+
+            // Os cabeçalhos de tabela costumam vir divididos em várias palavras (itens de texto
+            // separados no PDF), então cada rótulo é procurado como uma sequência de palavras.
+            function relPdfColumnStarts(line, labels) {
+                const starts = new Array(labels.length).fill(null);
+                let searchFrom = 0;
+                labels.forEach((label, idx) => {
+                    const wanted = label.split(/\s+/);
+                    for (let i = searchFrom; i < line.items.length; i++) {
+                        let ok = true;
+                        for (let w = 0; w < wanted.length; w++) {
+                            const it = line.items[i + w];
+                            if (!it || it.str.trim().toLowerCase() !== wanted[w].toLowerCase()) { ok = false; break; }
+                        }
+                        if (ok) {
+                            starts[idx] = line.items[i].x;
+                            searchFrom = i + wanted.length;
+                            break;
+                        }
+                    }
+                });
+                return starts;
+            }
+
+            function relPdfAssignRow(line, colStarts) {
+                const cols = colStarts.map(() => []);
+                line.items.forEach(it => {
+                    let colIdx = 0;
+                    for (let c = 0; c < colStarts.length; c++) {
+                        if (colStarts[c] !== null && it.x >= colStarts[c] - 3) colIdx = c;
+                    }
+                    cols[colIdx].push(it.str);
+                });
+                return cols.map(c => c.join(' ').replace(/\s+/g, ' ').trim());
+            }
+
+            function relPdfExtractDivergencias(lines) {
+                const headerIdx = lines.findIndex(l => /Motivo Macro/i.test(l.text) && /Motivo Micro/i.test(l.text) && /Detalhes/i.test(l.text));
+                if (headerIdx === -1) return [];
+                const labels = ['#', 'Motivo Macro', 'Motivo Micro', 'Detalhes'];
+                const colStarts = relPdfColumnStarts(lines[headerIdx], labels);
+                if (colStarts.every(c => c === null)) return [];
+                const rows = [];
+                for (let i = headerIdx + 1; i < lines.length; i++) {
+                    const l = lines[i];
+                    if (!l.text) continue;
+                    if (/^\d\.\s*[A-ZÀ-Ú]/.test(l.text)) break;
+                    const cells = relPdfAssignRow(l, colStarts);
+                    if (/^\d+$/.test(cells[0])) {
+                        rows.push({ id: cells[0], macro: cells[1] || 'Outro', micro: cells[2] || '', detalhe: cells[3] || '' });
+                    }
+                }
+                return rows;
+            }
+
+            function relPdfTemPlanoAcao(lines) {
+                const startIdx = lines.findIndex(l => /^3\.\s*PLANO DE AÇÃO/i.test(l.text));
+                if (startIdx === -1) return false;
+                const endIdx = lines.findIndex(l => /^4\.\s*RESPONSÁVEIS PELO ERRO/i.test(l.text));
+                const slice = lines.slice(startIdx + 1, endIdx === -1 ? undefined : endIdx);
+                return slice.some(l => /Divergência\s*#\d/i.test(l.text));
+            }
+
+            function relPdfObservacoes(lines) {
+                const startIdx = lines.findIndex(l => /^7\.\s*OBSERVAÇÕES DO AUDITOR/i.test(l.text));
+                if (startIdx === -1) return '';
+                const slice = lines.slice(startIdx + 1);
+                return slice.map(l => l.text).join(' ').replace(/\s+/g, ' ').trim();
+            }
+
+            async function relParsePdfFile(file) {
+                const buf = await file.arrayBuffer();
+                const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+                let allLines = [];
+                for (let p = 1; p <= pdf.numPages; p++) {
+                    const page = await pdf.getPage(p);
+                    const content = await page.getTextContent();
+                    allLines = allLines.concat(relPdfBuildLines(content));
+                }
+                allLines = allLines.filter(l => {
+                    const t = l.text;
+                    if (/^\d{2}\/\d{2}\/\d{4},?\s*\d{1,2}:\d{2}\s+Relatório de Auditoria/i.test(t)) return false;
+                    if (/^about:blank/i.test(t)) return false;
+                    if (/^Relatório de Auditoria - Grupo Krona$/i.test(t)) return false;
+                    return true;
+                });
+                const fullText = allLines.map(l => l.text).join(' ').replace(/\s+/g, ' ').trim();
+
+                if (!/ID Auditoria\s*:/i.test(fullText)) {
+                    throw new Error('Não parece um Relatório de Auditoria - Grupo Krona (campo "ID Auditoria" não encontrado).');
+                }
+
+                const campos = relPdfExtractLabeledFields(fullText);
+                const scores = relPdfExtractCardHeader(allLines);
+                const divergencias = relPdfExtractDivergencias(allLines);
+                const temPlano = relPdfTemPlanoAcao(allLines);
+                const observacoes = relPdfObservacoes(allLines);
+
+                return {
+                    arquivo: file.name,
+                    auditId: campos['ID Auditoria'] || '',
+                    data: campos['Data'] || '',
+                    unidade: campos['Unidade'] || '',
+                    carga: campos['Carga'] || '',
+                    pedido: campos['Pedido'] || '',
+                    cliente: campos['Cliente'] || '',
+                    transportadora: campos['Transportadora'] || '',
+                    auditorResponsavel: campos['Auditor Responsável'] || '',
+                    conferenteEmbarque: campos['Conferente (Embarque)'] || '',
+                    divergencia: campos['Possui Divergência'] || '',
+                    scoreGeral: scores.scoreGeral,
+                    scoreConferente: scores.scoreConferente,
+                    scoreExpedicao: scores.scoreExpedicao,
+                    classificacao: scores.classificacao,
+                    divergencias: divergencias,
+                    temPlanoAcao: temPlano,
+                    observacoesAuditor: observacoes
+                };
+            }
+
+            // ---------- Upload / processamento dos arquivos ----------
+            const relDz = document.getElementById('rel-dropzone');
+            const relInput = document.getElementById('rel-file-input');
+
+            relInput.addEventListener('change', function () {
+                const files = Array.from(this.files || []);
+                if (files.length) relProcessarArquivos(files);
+            });
+
+            relDz.addEventListener('dragover', e => { e.preventDefault(); relDz.classList.add('filled'); });
+            relDz.addEventListener('dragleave', e => { e.preventDefault(); relDz.classList.remove('filled'); });
+            relDz.addEventListener('drop', e => {
+                e.preventDefault();
+                relDz.classList.remove('filled');
+                const files = Array.from(e.dataTransfer.files || []).filter(f => /\.pdf$/i.test(f.name));
+                if (files.length) relProcessarArquivos(files);
+            });
+
+            async function relProcessarArquivos(files) {
+                const listEl = document.getElementById('rel-file-list');
+                relAuditoriasProcessadas = [];
+                listEl.innerHTML = 'Processando ' + files.length + ' arquivo(s)…';
+                const linhasHtml = [];
+                for (const file of files) {
+                    try {
+                        const a = await relParsePdfFile(file);
+                        relAuditoriasProcessadas.push(a);
+                        linhasHtml.push('<div class="ok-item">✅ ' + relEscapeHtml(file.name) + (a.auditId ? ' — ' + relEscapeHtml(a.auditId) : '') + '</div>');
+                    } catch (err) {
+                        console.error('Erro ao processar', file.name, err);
+                        linhasHtml.push('<div class="err-item">❌ ' + relEscapeHtml(file.name) + ' — não foi possível ler (' + relEscapeHtml(err.message) + ')</div>');
+                    }
+                }
+                listEl.innerHTML = linhasHtml.join('') + '<div class="summary-line">' + relAuditoriasProcessadas.length + ' de ' + files.length + ' processado(s) com sucesso.</div>';
+                relDz.classList.toggle('filled', relAuditoriasProcessadas.length > 0);
+            }
+
+            window.relProcessarEGerar = function () {
                 const msgEl = document.getElementById('relMsg');
+                if (!relAuditoriasProcessadas.length) {
+                    msgEl.textContent = 'Envie pelo menos um PDF de auditoria válido antes de gerar o relatório.';
+                    document.getElementById('reportOutput').style.display = 'none';
+                    document.getElementById('relBtnImprimir').style.display = 'none';
+                    return;
+                }
+                msgEl.textContent = '';
+                relRenderRelatorio(relAuditoriasProcessadas);
+            };
+
+            // ---------- Geração do relatório consolidado ----------
+            function relRenderRelatorio(auditorias) {
                 const outputEl = document.getElementById('reportOutput');
                 const btnImprimir = document.getElementById('relBtnImprimir');
-
-                if (typeof todasAuditorias === 'undefined' || !todasAuditorias.length) {
-                    msgEl.textContent = 'Os dados das auditorias ainda estão carregando (ou não há nenhuma auditoria registrada). Aguarde alguns segundos e tente novamente.';
-                    outputEl.style.display = 'none';
-                    btnImprimir.style.display = 'none';
-                    return;
-                }
-
-                const inicioStr = document.getElementById('relDataInicio').value;
-                const fimStr = document.getElementById('relDataFim').value;
-                if (!inicioStr || !fimStr) {
-                    msgEl.textContent = 'Selecione a data de início e de fim do período.';
-                    return;
-                }
-                const inicio = new Date(inicioStr + 'T00:00:00');
-                const fim = new Date(fimStr + 'T23:59:59');
-                if (inicio > fim) {
-                    msgEl.textContent = 'A data de início não pode ser depois da data de fim.';
-                    return;
-                }
-
-                const periodo = todasAuditorias.filter(a => {
-                    const d = relParseDataBR(a.data);
-                    return d && d >= inicio && d <= fim;
-                });
-
-                if (!periodo.length) {
-                    msgEl.textContent = 'Nenhuma auditoria encontrada nesse período.';
-                    outputEl.style.display = 'none';
-                    btnImprimir.style.display = 'none';
-                    return;
-                }
-
-                msgEl.textContent = '';
                 outputEl.style.display = 'block';
                 btnImprimir.style.display = 'inline-block';
 
-                document.getElementById('relPeriodoTexto').textContent =
-                    'Período: ' + relFmtDataBR(inicio) + ' a ' + relFmtDataBR(fim) + ' — Gerado em ' + new Date().toLocaleString('pt-BR');
+                const datas = auditorias.map(a => relParseDataISO(a.data)).filter(Boolean).sort((a, b) => a - b);
+                document.getElementById('relPeriodoTexto').textContent = datas.length
+                    ? (datas.length > 1 ? 'Período: ' + relFmtDataBR(datas[0]) + ' a ' + relFmtDataBR(datas[datas.length - 1]) : 'Data: ' + relFmtDataBR(datas[0])) + ' — Gerado em ' + new Date().toLocaleString('pt-BR')
+                    : 'Gerado em ' + new Date().toLocaleString('pt-BR');
 
-                // ---------- Cards de resumo ----------
-                const scores = periodo.map(a => parseScorePct(a.scoreComportamentalPct)).filter(s => s !== null);
+                // ---------- Cards ----------
+                const scores = auditorias.map(a => a.scoreGeral).filter(s => s !== null && s !== undefined);
                 const scoreMedio = scores.length ? Math.round(scores.reduce((s, v) => s + v, 0) / scores.length) : null;
-                const comDivergencia = periodo.filter(a => a.divergencia === 'Sim');
-                const pendentes = periodo.filter(temPendenciaDeTratativa);
+                const comDivergencia = auditorias.filter(a => a.divergencia === 'Sim');
+                const pendentes = auditorias.filter(relPendente);
 
                 document.getElementById('relCards').innerHTML = `
-                    <div class="card"><div class="label">Auditorias no Período</div><div class="value">${periodo.length}</div></div>
-                    <div class="card"><div class="label">Score Médio</div><div class="value">${scoreMedio !== null ? scoreMedio + '%' : '-'}</div></div>
-                    <div class="card warn"><div class="label">Com Divergência</div><div class="value">${comDivergencia.length} (${Math.round(comDivergencia.length / periodo.length * 100)}%)</div></div>
+                    <div class="card"><div class="label">Auditorias no Lote</div><div class="value">${auditorias.length}</div></div>
+                    <div class="card"><div class="label">Score Geral Médio</div><div class="value">${scoreMedio !== null ? scoreMedio + '%' : '-'}</div></div>
+                    <div class="card warn"><div class="label">Com Divergência</div><div class="value">${comDivergencia.length} (${Math.round(comDivergencia.length / auditorias.length * 100)}%)</div></div>
                     <div class="card bad"><div class="label">Pendente de Tratativa</div><div class="value">${pendentes.length}</div></div>
                 `;
 
-                // ---------- Comparativo com o período anterior de mesma duração ----------
-                const duracaoMs = fim.getTime() - inicio.getTime();
-                const inicioAnterior = new Date(inicio.getTime() - duracaoMs - 1);
-                const fimAnterior = new Date(inicio.getTime() - 1);
-                const periodoAnterior = todasAuditorias.filter(a => {
-                    const d = relParseDataBR(a.data);
-                    return d && d >= inicioAnterior && d <= fimAnterior;
-                });
-
-                function relSeta(delta, quantoMenorMelhor) {
-                    if (delta === 0 || delta === null) return '<span style="color:#64748b;">= sem variação</span>';
-                    const bom = quantoMenorMelhor ? delta < 0 : delta > 0;
-                    const cor = bom ? '#16a34a' : '#dc2626';
-                    const seta = delta > 0 ? '▲' : '▼';
-                    return `<span style="color:${cor}; font-weight:bold;">${seta} ${Math.abs(delta).toFixed(1)}</span>`;
-                }
-
-                if (!periodoAnterior.length) {
-                    document.getElementById('relComparativo').innerHTML =
-                        `<div class="report-narrative" style="color:#94a3b8; font-style:italic;">Não há dados suficientes do período imediatamente anterior para comparação ` +
-                        `(pode ser que essas auditorias estejam fora da janela de 90 dias carregada — use "Carregar histórico completo" na aba Histórico se precisar comparar períodos mais antigos).</div>`;
-                } else {
-                    const scoresAnt = periodoAnterior.map(a => parseScorePct(a.scoreComportamentalPct)).filter(s => s !== null);
-                    const scoreMedioAnt = scoresAnt.length ? Math.round(scoresAnt.reduce((s, v) => s + v, 0) / scoresAnt.length) : null;
-                    const comDivergenciaAnt = periodoAnterior.filter(a => a.divergencia === 'Sim');
-                    const pctDivergAtual = Math.round(comDivergencia.length / periodo.length * 100);
-                    const pctDivergAnt = Math.round(comDivergenciaAnt.length / periodoAnterior.length * 100);
-
-                    document.getElementById('relComparativo').innerHTML = `
-                        <div class="report-narrative" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px 14px;">
-                            <strong>Comparativo com o período anterior</strong> (${relFmtDataBR(inicioAnterior)} a ${relFmtDataBR(fimAnterior)}, ${periodoAnterior.length} auditoria(s)):
-                            Volume de auditorias ${relSeta(periodo.length - periodoAnterior.length, false)} &nbsp;·&nbsp;
-                            Score médio ${scoreMedioAnt !== null && scoreMedio !== null ? relSeta(scoreMedio - scoreMedioAnt, false) + ' p.p.' : 'sem dado anterior'} &nbsp;·&nbsp;
-                            % com divergência ${relSeta(pctDivergAtual - pctDivergAnt, true)} p.p.
-                        </div>`;
-                }
-
                 // ---------- Narrativa geral ----------
-                const unidadesEnvolvidas = [...new Set(periodo.map(a => a.unidade).filter(Boolean))];
-                const transportadorasEnvolvidas = [...new Set(periodo.map(a => a.transportadora).filter(Boolean))];
-                let narrativaGeral = `No período analisado, de ${relFmtDataBR(inicio)} a ${relFmtDataBR(fim)}, foram realizadas ${periodo.length} auditoria(s) de embarque e checkout, ` +
+                const unidadesEnvolvidas = [...new Set(auditorias.map(a => a.unidade).filter(Boolean))];
+                const transportadorasEnvolvidas = [...new Set(auditorias.map(a => a.transportadora).filter(Boolean))];
+                let narrativaGeral = `Foram processadas ${auditorias.length} auditoria(s) de embarque e checkout a partir dos PDFs enviados, ` +
                     `abrangendo ${unidadesEnvolvidas.length} unidade(s) (${unidadesEnvolvidas.join(', ') || 'não informado'}) e ${transportadorasEnvolvidas.length} transportadora(s) distintas. `;
                 if (scoreMedio !== null) {
                     const qualificacao = scoreMedio >= 90 ? 'excelente, indicando forte aderência aos padrões operacionais definidos pela Krona' :
                         (scoreMedio >= 70 ? 'satisfatória, com pontos de atenção que merecem acompanhamento' : 'preocupante, sinalizando a necessidade de ações corretivas mais assertivas');
-                    narrativaGeral += `O score comportamental médio do período foi de ${scoreMedio}%, uma performance considerada ${qualificacao}. `;
+                    narrativaGeral += `O score geral médio do lote foi de ${scoreMedio}%, uma performance considerada ${qualificacao}. `;
                 }
-                narrativaGeral += `Do total de auditorias realizadas, ${comDivergencia.length} (${Math.round(comDivergencia.length / periodo.length * 100)}%) registraram algum tipo de divergência` +
-                    (pendentes.length > 0 ? `, das quais ${pendentes.length} ainda ${pendentes.length === 1 ? 'está' : 'estão'} pendente(s) de plano de ação — recomenda-se priorizar o tratamento dessas ocorrências antes do próximo ciclo de auditoria.` : `, e todas já contam com plano de ação registrado, o que demonstra boa disciplina de tratativa por parte da equipe.`);
+                narrativaGeral += `Do total de auditorias, ${comDivergencia.length} (${Math.round(comDivergencia.length / auditorias.length * 100)}%) registraram algum tipo de divergência` +
+                    (pendentes.length > 0 ? `, das quais ${pendentes.length} ainda ${pendentes.length === 1 ? 'está' : 'estão'} pendente(s) de plano de ação — recomenda-se priorizar o tratamento dessas ocorrências.` : `, e todas já contam com plano de ação registrado, o que demonstra boa disciplina de tratativa por parte da equipe.`);
                 document.getElementById('relNarrativaGeral').textContent = narrativaGeral;
 
-                // ---------- Gráfico: Score médio por dia ----------
+                // ---------- Gráfico: Score Geral médio por dia ----------
                 const porDia = {};
-                periodo.forEach(a => {
-                    const d = relParseDataBR(a.data);
-                    if (!d) return;
+                auditorias.forEach(a => {
+                    const d = relParseDataISO(a.data);
+                    if (!d || a.scoreGeral === null || a.scoreGeral === undefined) return;
                     const key = relFmtDataBR(d);
-                    const s = parseScorePct(a.scoreComportamentalPct);
-                    if (s === null) return;
                     if (!porDia[key]) porDia[key] = { soma: 0, n: 0, dateObj: d };
-                    porDia[key].soma += s;
+                    porDia[key].soma += a.scoreGeral;
                     porDia[key].n += 1;
                 });
                 const diasOrdenados = Object.keys(porDia).sort((a, b) => porDia[a].dateObj - porDia[b].dateObj);
                 relDestroyChart('scoreDia');
                 relCharts.scoreDia = new Chart(document.getElementById('chartScoreDia'), {
                     type: 'line',
-                    data: {
-                        labels: diasOrdenados,
-                        datasets: [{
-                            label: 'Score médio (%)',
-                            data: diasOrdenados.map(k => Math.round(porDia[k].soma / porDia[k].n)),
-                            borderColor: '#005691', backgroundColor: 'rgba(0,86,145,0.15)', fill: true, tension: 0.25
-                        }]
-                    },
+                    data: { labels: diasOrdenados, datasets: [{ label: 'Score geral médio (%)', data: diasOrdenados.map(k => Math.round(porDia[k].soma / porDia[k].n)), borderColor: '#005691', backgroundColor: 'rgba(0,86,145,0.15)', fill: true, tension: 0.25 }] },
                     options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { min: 0, max: 100 } } }
                 });
 
                 // ---------- Gráfico: Auditorias por unidade ----------
                 const porUnidade = {};
-                periodo.forEach(a => { const u = a.unidade || 'Não informado'; porUnidade[u] = (porUnidade[u] || 0) + 1; });
+                auditorias.forEach(a => { const u = a.unidade || 'Não informado'; porUnidade[u] = (porUnidade[u] || 0) + 1; });
                 const unidadeLabels = Object.keys(porUnidade);
                 relDestroyChart('unidade');
                 relCharts.unidade = new Chart(document.getElementById('chartUnidade'), {
@@ -1640,9 +1347,9 @@
 
                 // ---------- Gráfico: Divergências por motivo macro ----------
                 const todasDivergencias = [];
-                periodo.forEach(a => {
+                auditorias.forEach(a => {
                     if (a.divergencia !== 'Sim') return;
-                    relParseDivergencias(a.listaDivergencias).forEach(d => todasDivergencias.push(Object.assign({ auditoria: a }, d)));
+                    (a.divergencias || []).forEach(d => todasDivergencias.push(Object.assign({ auditoria: a }, d)));
                 });
                 const porMotivoMacro = {};
                 todasDivergencias.forEach(d => { porMotivoMacro[d.macro] = (porMotivoMacro[d.macro] || 0) + 1; });
@@ -1668,9 +1375,9 @@
                 // ---------- Gráficos: Score médio por Auditor e por Conferente ----------
                 function relMediaPorCampo(campo) {
                     const grupos = {};
-                    periodo.forEach(a => {
-                        const s = parseScorePct(a.scoreComportamentalPct);
-                        if (s === null) return;
+                    auditorias.forEach(a => {
+                        const s = a.scoreGeral;
+                        if (s === null || s === undefined) return;
                         const chave = a[campo] || 'Não informado';
                         if (!grupos[chave]) grupos[chave] = { soma: 0, n: 0 };
                         grupos[chave].soma += s;
@@ -1684,7 +1391,7 @@
                 relDestroyChart('auditor');
                 relCharts.auditor = new Chart(document.getElementById('chartAuditor'), {
                     type: 'bar',
-                    data: { labels: porAuditor.labels, datasets: [{ label: 'Score médio (%)', data: porAuditor.valores, backgroundColor: relCoresPaleta(porAuditor.labels.length) }] },
+                    data: { labels: porAuditor.labels, datasets: [{ label: 'Score geral médio (%)', data: porAuditor.valores, backgroundColor: relCoresPaleta(porAuditor.labels.length) }] },
                     options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { min: 0, max: 100 } } }
                 });
 
@@ -1692,17 +1399,40 @@
                 relDestroyChart('conferente');
                 relCharts.conferente = new Chart(document.getElementById('chartConferente'), {
                     type: 'bar',
-                    data: { labels: porConferente.labels, datasets: [{ label: 'Score médio (%)', data: porConferente.valores, backgroundColor: relCoresPaleta(porConferente.labels.length) }] },
+                    data: { labels: porConferente.labels, datasets: [{ label: 'Score geral médio (%)', data: porConferente.valores, backgroundColor: relCoresPaleta(porConferente.labels.length) }] },
+                    options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { min: 0, max: 100 } } }
+                });
+
+                // ---------- Gráfico: Classificação Operacional ----------
+                const porClassificacao = {};
+                auditorias.forEach(a => { const c = a.classificacao || 'Não informado'; porClassificacao[c] = (porClassificacao[c] || 0) + 1; });
+                const classifLabels = Object.keys(porClassificacao);
+                relDestroyChart('classificacao');
+                relCharts.classificacao = new Chart(document.getElementById('chartClassificacao'), {
+                    type: 'doughnut',
+                    data: { labels: classifLabels, datasets: [{ data: classifLabels.map(c => porClassificacao[c]), backgroundColor: relCoresPaleta(classifLabels.length) }] },
+                    options: { responsive: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } } }
+                });
+
+                // ---------- Gráfico: Score Conferente x Score Expedição (médias) ----------
+                const scConf = auditorias.map(a => a.scoreConferente).filter(s => s !== null && s !== undefined);
+                const scExp = auditorias.map(a => a.scoreExpedicao).filter(s => s !== null && s !== undefined);
+                const mediaConf = scConf.length ? Math.round(scConf.reduce((s, v) => s + v, 0) / scConf.length) : 0;
+                const mediaExp = scExp.length ? Math.round(scExp.reduce((s, v) => s + v, 0) / scExp.length) : 0;
+                relDestroyChart('confExp');
+                relCharts.confExp = new Chart(document.getElementById('chartConferenteExpedicao'), {
+                    type: 'bar',
+                    data: { labels: ['Score Conferente', 'Score Expedição'], datasets: [{ data: [mediaConf, mediaExp], backgroundColor: ['#0891b2', '#7c3aed'] }] },
                     options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { min: 0, max: 100 } } }
                 });
 
                 // ---------- Desvios comportamentais consolidados ----------
                 let narrativaDesvios;
                 if (!todasDivergencias.length) {
-                    narrativaDesvios = 'Não foram registradas divergências no período analisado — nenhum desvio comportamental foi identificado pelos auditores nas cargas conferidas.';
+                    narrativaDesvios = 'Não foram registradas divergências no lote enviado — nenhum desvio comportamental foi identificado pelos auditores nas cargas conferidas.';
                 } else {
                     const motivoMaisFrequente = motivoLabels[0];
-                    narrativaDesvios = `Foram identificadas ${todasDivergencias.length} divergência(s) no período, distribuídas em ${motivoLabels.length} categoria(s) de motivo. ` +
+                    narrativaDesvios = `Foram identificadas ${todasDivergencias.length} divergência(s) no lote, distribuídas em ${motivoLabels.length} categoria(s) de motivo. ` +
                         `O motivo mais recorrente foi "${motivoMaisFrequente}", respondendo por ${porMotivoMacro[motivoMaisFrequente]} ocorrência(s). ` +
                         `A seguir, o detalhamento de cada categoria, com as observações registradas pelos auditores no momento da conferência.`;
                 }
@@ -1726,12 +1456,12 @@
                 document.getElementById('relDeviationGroups').innerHTML = gruposHtml || '';
 
                 // ---------- Observações gerais dos auditores ----------
-                const comObservacao = periodo.filter(a => a.observacoesAuditor && String(a.observacoesAuditor).trim());
+                const comObservacao = auditorias.filter(a => a.observacoesAuditor && String(a.observacoesAuditor).trim());
                 let narrativaObs;
                 if (!comObservacao.length) {
-                    narrativaObs = 'Nenhuma observação adicional foi registrada pelos auditores neste período.';
+                    narrativaObs = 'Nenhuma observação adicional foi registrada pelos auditores neste lote.';
                 } else {
-                    narrativaObs = `Além das divergências formalmente registradas, os auditores deixaram ${comObservacao.length} observação(ões) livre(s) durante as conferências do período, ` +
+                    narrativaObs = `Além das divergências formalmente registradas, os auditores deixaram ${comObservacao.length} observação(ões) livre(s) durante as conferências, ` +
                         `compiladas abaixo na íntegra para consulta e eventual ação preventiva das equipes de embarque e checkout.`;
                 }
                 document.getElementById('relNarrativaObs').textContent = narrativaObs;
@@ -1743,8 +1473,8 @@
                     </div>
                 `).join('') || '';
 
-                document.getElementById('relRodape').textContent = 'Relatório gerado automaticamente pelo Painel de Auditorias — Grupo Krona.';
-            };
+                document.getElementById('relRodape').textContent = 'Relatório gerado automaticamente a partir de ' + auditorias.length + ' arquivo(s) de auditoria em PDF — Painel de Auditorias, Grupo Krona.';
+            }
         })();
     </script>
 </body>
